@@ -1,7 +1,10 @@
 import React, { useRef, useState } from "react";
 import cloth1 from '../assets/images/products/clothes-1.jpg'
 import { Progress } from "@material-tailwind/react";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faEye, faRefresh, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
+import '../CSS/sale.css'
 // icon section
 import dress from '../assets/images/icons/dress.svg'
 import shoe from '../assets/images/icons/shoes.svg'
@@ -10,6 +13,8 @@ import perfume from '../assets/images/icons/perfume.svg'
 import cosmetics from '../assets/images/icons/cosmetics.svg'
 import glass from '../assets/images/icons/glasses.svg'
 import bag from '../assets/images/icons/bag.svg'
+
+
 
 //best-seller-image
 import babyShoe from '../assets/images/products/1.jpg'
@@ -20,6 +25,51 @@ import Hat from '../assets/images/products/4.jpg'
 
 //Deal of the day 
 import shampo from '../assets/images/products/shampoo.jpg'
+
+// new product section images 
+import jacket from '../assets/images/products/jacket-1.jpg'
+import jacket2 from '../assets/images/products/jacket-2.jpg'
+import jacket3 from '../assets/images/products/jacket-3.jpg'
+import jacket4 from '../assets/images/products/jacket-4.jpg'
+import jacket5 from '../assets/images/products/jacket-5.jpg'
+import jacket6 from '../assets/images/products/jacket-6.jpg'
+
+import shirt1 from '../assets/images/products/shirt-1.jpg'
+import shirt2 from '../assets/images/products/shirt-2.jpg'
+
+// import jewellery1 from '../assets/images/products/jewelry-1.jpg'
+// import jewellery2 from '../assets/images/products/jewelry-2.jpg'
+// import jewellery3 from '../assets/images/products/jewelry-3.jpg'
+
+import partyWear1 from '../assets/images/products/party-wear-1.jpg'
+import partyWear2 from '../assets/images/products/party-wear-2.jpg'
+
+import watch from '../assets/images/products/watch-1.jpg'
+import watch2 from '../assets/images/products/watch-2.jpg'
+import watch3 from '../assets/images/products/watch-3.jpg'
+import watch4 from '../assets/images/products/watch-4.jpg'
+
+import shoe1 from '../assets/images/products/shoe-1.jpg'
+import shoe2 from '../assets/images/products/shoe-2.jpg'
+import shoe3 from '../assets/images/products/shoe-3.jpg'
+import shoe4 from '../assets/images/products/shoe-4.jpg'
+import shoe5 from '../assets/images/products/shoe-5.jpg'
+
+import shorts1 from '../assets/images/products/shorts-1.jpg'
+import shorts2 from '../assets/images/products/shorts-2.jpg'
+
+import sports from '../assets/images/products/sports-1.jpg'
+import sports2 from '../assets/images/products/sports-2.jpg'
+import sports3 from '../assets/images/products/sports-3.jpg'
+import sports4 from '../assets/images/products/sports-4.jpg'
+import sports5 from '../assets/images/products/sports-5.jpg'
+import sports6 from '../assets/images/products/sports-6.jpg'
+
+import cloth3 from '../assets/images/products/clothes-3.jpg'
+import cloth4 from '../assets/images/products/clothes-4.jpg'
+
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const EcommerceLayout = () => {
 
@@ -107,52 +157,147 @@ const EcommerceLayout = () => {
 
 
 
-     const products = [
-    {
-      id: 1,
-      label: "15%",
-      labelColor: "bg-green-500",
-      category: "JACKET",
-      title: "Mens Winter Leathers Jackets",
-      rating: 3,
-      price: "$48.00",
-      oldPrice: "$75.00",
-      image: "https://via.placeholder.com/150"
-    },
-    {
-      id: 2,
-      label: "SALE",
-      labelColor: "bg-black",
-      category: "SHIRT",
-      title: "Pure Garment Dyed Cotton Shirt",
-      rating: 3,
-      price: "$45.00",
-      oldPrice: "$56.00",
-      image: "https://via.placeholder.com/150"
-    },
-    {
-      id: 3,
-      label: "",
-      labelColor: "",
-      category: "JACKET",
-      title: "MEN Yarn Fleece Full-Zip Jacket",
-      rating: 3,
-      price: "$58.00",
-      oldPrice: "$65.00",
-      image: "https://via.placeholder.com/150"
-    },
-    {
-      id: 4,
-      label: "NEW",
-      labelColor: "bg-pink-400",
-      category: "SKIRT",
-      title: "Black Floral Wrap Midi Skirt",
-      rating: 5,
-      price: "$25.00",
-      oldPrice: "$35.00",
-      image: "https://via.placeholder.com/150"
-    }
-  ];
+
+    const products = [
+        {
+            id: 1,
+            label: "15%",
+            labelColor: "bg-green-500",
+            category: "JACKET",
+            title: "Mens Winter Leathers Jackets",
+            rating: 3,
+            price: "$48.00",
+            oldPrice: "$75.00",
+            image: jacket3,
+            hoverImage: jacket4
+        },
+        {
+            id: 2,
+            label: "SALE",
+            labelColor: "bg-black",
+            category: "SHIRT",
+            title: "Pure Garment Dyed Cotton Shirt",
+            rating: 3,
+            price: "$45.00",
+            oldPrice: "$56.00",
+            image: shirt1,
+            hoverImage: shirt2
+        },
+        {
+            id: 3,
+            label: "",
+            labelColor: "",
+            category: "JACKET",
+            title: "MEN Yarn Fleece Full-Zip Jacket",
+            rating: 3,
+            price: "$58.00",
+            oldPrice: "$65.00",
+            image: jacket5,
+            hoverImage: jacket6
+
+        },
+        {
+            id: 4,
+            label: "NEW",
+            labelColor: "bg-pink-400",
+            category: "SKIRT",
+            title: "Black Floral Wrap Midi Skirt",
+            rating: 5,
+            price: "$25.00",
+            oldPrice: "$35.00",
+            image: cloth3,
+            hoverImage: cloth4
+        },
+
+        {
+            id: 1,
+            label: "15%",
+            labelColor: "bg-green-500",
+            category: "JACKET",
+            title: "Mens Winter Leathers Jackets",
+            rating: 3,
+            price: "$48.00",
+            oldPrice: "$75.00",
+            image: jacket
+        },
+        {
+            id: 2,
+            label: "SALE",
+            labelColor: "bg-black",
+            category: "SHIRT",
+            title: "Pure Garment Dyed Cotton Shirt",
+            rating: 3,
+            price: "$45.00",
+            oldPrice: "$56.00",
+            image: jacket
+        },
+        {
+            id: 3,
+            label: "",
+            labelColor: "",
+            category: "JACKET",
+            title: "MEN Yarn Fleece Full-Zip Jacket",
+            rating: 3,
+            price: "$58.00",
+            oldPrice: "$65.00",
+            image: jacket
+        },
+        {
+            id: 4,
+            label: "NEW",
+            labelColor: "bg-pink-400",
+            category: "SKIRT",
+            title: "Black Floral Wrap Midi Skirt",
+            rating: 5,
+            price: "$25.00",
+            oldPrice: "$35.00",
+            image: jacket
+        },
+        {
+            id: 1,
+            label: "15%",
+            labelColor: "bg-green-500",
+            category: "JACKET",
+            title: "Mens Winter Leathers Jackets",
+            rating: 3,
+            price: "$48.00",
+            oldPrice: "$75.00",
+            image: jacket
+        },
+        {
+            id: 2,
+            label: "SALE",
+            labelColor: "bg-black",
+            category: "SHIRT",
+            title: "Pure Garment Dyed Cotton Shirt",
+            rating: 3,
+            price: "$45.00",
+            oldPrice: "$56.00",
+            image: jacket
+        },
+        {
+            id: 3,
+            label: "",
+            labelColor: "",
+            category: "JACKET",
+            title: "MEN Yarn Fleece Full-Zip Jacket",
+            rating: 3,
+            price: "$58.00",
+            oldPrice: "$65.00",
+            image: jacket
+        },
+        {
+            id: 4,
+            label: "NEW",
+            labelColor: "bg-pink-400",
+            category: "SKIRT",
+            title: "Black Floral Wrap Midi Skirt",
+            rating: 5,
+            price: "$25.00",
+            oldPrice: "$35.00",
+            image: jacket
+        },
+    ];
 
     const toggleCategory = (index) => {
         setOpenIndex(openIndex === index ? null : index);
@@ -386,43 +531,90 @@ const EcommerceLayout = () => {
                     </div>
                 </div>
 
+                {/* new product section  */}
 
-                  <div className="col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {products.map((product) => (
-              <div
-                key={product.id}
-                className="border rounded-xl p-4 relative hover:shadow-lg transition bg-white"
-              >
-                {product.label && (
-                  <span className={`absolute top-2 left-2 text-white text-xs px-2 py-1 rounded ${product.labelColor}`}>
-                    {product.label}
-                  </span>
-                )}
+                <div className="col-span-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {products.map((product) => (
+                        <div
+                            key={product.id}
+                            className="border rounded-xl p-4 relative hover:shadow-lg transition bg-white overflow-hidden group"
+                        >
+                            {/* SALE Label - Fixed Position */}
+                            {product.label && product.label.toLowerCase() === 'sale' && (
+                                <div className="absolute top-0 left-[-30px] rotate-[-45deg] bg-black text-white uppercase text-[11px] py-[5px] px-[40px] font-bold shadow-md z-20">
+                                    {product.label}
+                                </div>
+                            )}
 
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="w-full h-40 object-contain mb-4"
-                />
+                            {/* Other Labels */}
+                            {product.label && product.label.toLowerCase() !== 'sale' && (
+                                <span
+                                    className={`absolute top-2 left-2 text-white text-xs px-2 py-1 rounded ${product.labelColor} z-20`}
+                                >
+                                    {product.label}
+                                </span>
+                            )}
 
-                <div className="text-pink-500 text-xs uppercase mb-1">{product.category}</div>
-                <div className="text-base font-semibold mb-1">{product.title}</div>
+                            {/* Product Image with Hover Effect */}
+                            <div className="relative w-full h-40 mb-4 overflow-hidden">
+                                <img
+                                    src={product.image}
+                                    alt={product.title}
+                                    className="w-full h-full object-contain transition-opacity duration-500 ease-in-out group-hover:opacity-0"
+                                />
+                                <img
+                                    src={product.hoverImage}
+                                    alt={product.title}
+                                    className="w-full h-full object-contain absolute top-0 left-0 opacity-0 group-hover:opacity-100 transform scale-100 group-hover:scale-[1.19] transition-all duration-500 ease-in-out"
+                                />
 
-                <div className="flex items-center mb-2">
-                  {Array.from({ length: 5 }, (_, i) => (
-                    <span key={i} className={`text-yellow-400 ${i < product.rating ? '' : 'opacity-30'}`}>
-                      ★
-                    </span>
-                  ))}
+                                {/* Action Icons Slide In on Hover */}
+                                <div className="absolute top-2 right-2 flex flex-col space-y-2 transform translate-x-8 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 z-30">
+                                    <button className="w-7 h-7 border border-gray-300 flex items-center justify-center bg-white rounded shadow hover:bg-black  hover:text-white">
+                                        <FontAwesomeIcon icon={faHeart} className="text-sm" />
+                                    </button>
+                                    <button className="w-7 h-7 flex items-center justify-center bg-white rounded shadow  hover:bg-black  hover:text-white">
+                                        <FontAwesomeIcon icon={faEye} className="text-sm" />
+                                    </button>
+                                    <button className="w-7 h-7 flex items-center justify-center bg-white rounded shadow  hover:bg-black  hover:text-white">
+                                        <FontAwesomeIcon icon={faRefresh} className="text-sm" />
+                                    </button>
+                                    <button className="w-7 h-7 flex items-center justify-center bg-white rounded shadow  hover:bg-black  hover:text-white ">
+                                        <FontAwesomeIcon icon={faShoppingCart} className="text-sm" />
+                                    </button>
+                                </div>
+
+                            </div>
+
+                            {/* Product Category */}
+                            <div className="text-red-500 text-xs uppercase mb-1">{product.category}</div>
+
+                            {/* Product Title */}
+                            <div className="text-base font-semibold mb-1 text-gray-500">{product.title}</div>
+
+                            {/* Rating */}
+                            <div className="flex items-center mb-2">
+                                {Array.from({ length: 5 }, (_, i) => (
+                                    <span key={i} className={`text-yellow-400 ${i < product.rating ? '' : 'opacity-30'}`}>★</span>
+                                ))}
+                            </div>
+
+                            {/* Price */}
+                            <div className="text-sm">
+                                <span className="font-bold mr-2">{product.price}</span>
+                                <span className="line-through text-gray-400">{product.oldPrice}</span>
+                            </div>
+                        </div>
+                    ))}
                 </div>
 
-                <div className="text-sm">
-                  <span className="font-bold mr-2">{product.price}</span>
-                  <span className="line-through text-gray-400">{product.oldPrice}</span>
-                </div>
-              </div>
-            ))}
-          </div>
+
+
+
+
+
+
+
             </div>
         </div>
     );
