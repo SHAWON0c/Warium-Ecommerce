@@ -1,0 +1,6 @@
+/* sliderFix.css */
+.awssld__content > div {
+  background-size: contain !important;
+  background-repeat: no-repeat;
+  background-position: center;
+}

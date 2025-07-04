@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.scrollbar-thin-custom::-webkit-scrollbar {
+  height: 6px;
+}

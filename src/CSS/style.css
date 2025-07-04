@@ -1,0 +1,3 @@
+.hred:hover {
+  @apply text-red-400;
+}

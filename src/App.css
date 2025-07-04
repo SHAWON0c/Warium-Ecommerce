@@ -1,0 +1,19 @@
+/* Custom horizontal scrollbar styles */
+.scrollbar-thin-custom::-webkit-scrollbar {
+  height: 8px; /* for horizontal scrolling */
+}
+
+.scrollbar-thin-custom::-webkit-scrollbar-track {
+  background: #ec1717;
+  border-radius: 10px;
+}
+
+.scrollbar-thin-custom::-webkit-scrollbar-thumb {
+  background-color: #ad1212;
+  border-radius: 10px;
+  border: 2px solid #f30b0b;
+}
+
+.scrollbar-thin-custom::-webkit-scrollbar-thumb:hover {
+  background: #db0909;
+}
