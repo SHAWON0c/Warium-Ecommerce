@@ -7,6 +7,7 @@ import '../App.css';
 import '../index.css';
 import EcommerceLayout from './EcommerceLayout';
 
+
 const Home = () => {
     return (
         <div>

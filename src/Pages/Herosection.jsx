@@ -9,7 +9,7 @@ const Herosection = () => {
   const bannerTexts = [
     { title: "Trending Item", subtitle1: "Women's latest fashion sale", subtitle2: "Startting at $20.00", },
     { title: "Trending accessories", subtitle1: "Modern sunglasses", subtitle2: "starting at $ 15.00", },
-    { title: "Sale Offer", subtitle1: "New fashion summer sale",subtitle2: "starting at $ 29.99", },
+    { title: "Sale Offer", subtitle1: "New fashion summer sale", subtitle2: "starting at $ 29.99", },
   ];
 
 
@@ -38,7 +38,7 @@ const Herosection = () => {
   return (
     <>
       <div
-      ref={sliderRef}
+        ref={sliderRef}
 
         className="flex items-center gap-2 overflow-x-auto snap-x snap-mandatory scroll-smooth  rounded-lg mt-0 h-auto w-[1320px]"
       >
