@@ -1,0 +1,69 @@
+[
+  {
+    "name": "Clothes",
+    "icon": "/src/assets/images/icons/dress.svg",
+    "subItems": [
+      { "name": "Shirt", "count": 300 },
+      { "name": "Shorts & Jeans", "count": 120 },
+      { "name": "Jacket", "count": 80 },
+      { "name": "Dress & Frock", "count": 80 }
+    ]
+  },
+  {
+    "name": "Footwear",
+    "icon": "/src/assets/images/icons/shoes.svg",
+    "subItems": [
+      { "name": "Sports", "count": 150 },
+      { "name": "Formal", "count": 60 },
+      { "name": "Casual", "count": 45 },
+      { "name": "Safety Shoes", "count": 45 }
+    ]
+  },
+  {
+    "name": "Jewelry",
+    "icon": "/src/assets/images/icons/jewelry.svg",
+    "subItems": [
+      { "name": "Earrings", "count": 40 },
+      { "name": "Couple Rings", "count": 50 },
+      { "name": "Necklace", "count": 30 }
+    ]
+  },
+  {
+    "name": "Perfume",
+    "icon": "/src/assets/images/icons/perfume.svg",
+    "subItems": [
+      { "name": "Clothes Perfume", "count": 40 },
+      { "name": "Deodorant", "count": 50 },
+      { "name": "Flower Fragrance", "count": 30 },
+      { "name": "Air Freshener", "count": 30 }
+    ]
+  },
+  {
+    "name": "Cosmetics",
+    "icon": "/src/assets/images/icons/cosmetics.svg",
+    "subItems": [
+      { "name": "Shampoo", "count": 40 },
+      { "name": "Sunscreen", "count": 50 },
+      { "name": "Body Wash", "count": 30 },
+      { "name": "Makeup kit", "count": 30 }
+    ]
+  },
+  {
+    "name": "Glasses",
+    "icon": "/src/assets/images/icons/glasses.svg",
+    "subItems": [
+      { "name": "Sunglasses", "count": 40 },
+      { "name": "Lenses", "count": 50 }
+    ]
+  },
+  {
+    "name": "Bags",
+    "icon": "/src/assets/images/icons/bag.svg",
+    "subItems": [
+      { "name": "Shopping Bag", "count": 40 },
+      { "name": "Gym Backpack", "count": 50 },
+      { "name": "Purse", "count": 30 },
+      { "name": "Wallet", "count": 30 }
+    ]
+  }
+]

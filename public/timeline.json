@@ -1,0 +1,80 @@
+{
+  "newArrivals": [
+    {
+      "title": "Relaxed Short Full Sleep",
+      "category": "Clothes",
+      "price": 45,
+      "oldPrice": 120
+    },
+    {
+      "title": "Girls Pnk Embro Design",
+      "category": "Clothes",
+      "price": 61,
+      "oldPrice": 90
+    },
+    {
+      "title": "Black Floral Wrap Midi",
+      "category": "Clothes",
+      "price": 76,
+      "oldPrice": 25
+    },
+    {
+      "title": "Pure Garment Dyed Coat",
+      "category": "Mens Fashion",
+      "price": 68,
+      "oldPrice": 31
+    }
+  ],
+  "trending": [
+    {
+      "title": "Running & Trekking Shoes",
+      "category": "Sports",
+      "price": 49,
+      "oldPrice": 150
+    },
+    {
+      "title": "Trekking & Running Shoes",
+      "category": "Sports",
+      "price": 78,
+      "oldPrice": 36
+    },
+    {
+      "title": "Women's Party Wear Shoes",
+      "category": "Party Wear",
+      "price": 94,
+      "oldPrice": 42
+    },
+    {
+      "title": "Sports Claw Women's Shoes",
+      "category": "Sports",
+      "price": 54,
+      "oldPrice": 65
+    }
+  ],
+  "topRated": [
+    {
+      "title": "Pocket Watch Leather Band",
+      "category": "Watches",
+      "price": 50,
+      "oldPrice": 34
+    },
+    {
+      "title": "Silver Deer Heart Necklace",
+      "category": "Jewellery",
+      "price": 84,
+      "oldPrice": 30
+    },
+    {
+      "title": "Titan 100 Ml Womens Perfume",
+      "category": "Perfume",
+      "price": 42,
+      "oldPrice": 10
+    },
+    {
+      "title": "Men's Leather Reversible Belt",
+      "category": "Belt",
+      "price": 24,
+      "oldPrice": 10
+    }
+  ]
+}

@@ -1,0 +1,220 @@
+[
+  {
+    "id": 1,
+    "label": "15%",
+    "labelColor": "bg-green-500",
+    "category": "JACKET",
+    "title": "Mens Winter Leathers Jackets",
+    "rating": 3,
+    "price": "$48.00",
+    "oldPrice": "$75.00",
+    "image": "https://i.ibb.co/gFFhh5v5/jacket-3.jpg",
+    "hoverImage": "https://i.ibb.co/9kVNR4p2/jacket-4.jpg"
+  },
+  {
+    "id": 2,
+    "label": "SALE",
+    "labelColor": "bg-black",
+    "category": "SHIRT",
+    "title": "Pure Garment Dyed Cotton Shirt",
+    "rating": 3,
+    "price": "$45.00",
+    "oldPrice": "$56.00",
+    "image": "https://i.ibb.co/JhKv2TL/shirt-1.jpg",
+    "hoverImage": "https://i.ibb.co/WWg2qGhd/shirt-2.jpg"
+  },
+  {
+    "id": 3,
+    "label": "",
+    "labelColor": "",
+    "category": "JACKET",
+    "title": "MEN Yarn Fleece Full-Zip Jacket",
+    "rating": 3,
+    "price": "$58.00",
+    "oldPrice": "$65.00",
+    "image": "https://i.ibb.co/gLB4rZkY/jacket-5.jpg",
+    "hoverImage": "https://i.ibb.co/HTMpBMQY/jacket-6.jpg"
+  },
+  {
+    "id": 4,
+    "label": "NEW",
+    "labelColor": "bg-pink-400",
+    "category": "SKIRT",
+    "title": "Black Floral Wrap Midi Skirt",
+    "rating": 5,
+    "price": "$25.00",
+    "oldPrice": "$35.00",
+    "image": "https://i.ibb.co/s93gk9Vp/clothes-3.jpg",
+    "hoverImage": "https://i.ibb.co/S48x7hSg/clothes-4.jpg"
+  },
+  {
+    "id": 5,
+    "label": "15%",
+    "labelColor": "bg-green-500",
+    "category": "JACKET",
+    "title": "Mens Winter Leathers Jackets",
+    "rating": 3,
+    "price": "$48.00",
+    "oldPrice": "$75.00",
+    "image": "jacket"
+  },
+  {
+    "id": 6,
+    "label": "SALE",
+    "labelColor": "bg-black",
+    "category": "SHIRT",
+    "title": "Pure Garment Dyed Cotton Shirt",
+    "rating": 3,
+    "price": "$45.00",
+    "oldPrice": "$56.00",
+    "image": "jacket"
+  },
+  {
+    "id": 7,
+    "label": "",
+    "labelColor": "",
+    "category": "JACKET",
+    "title": "MEN Yarn Fleece Full-Zip Jacket",
+    "rating": 3,
+    "price": "$58.00",
+    "oldPrice": "$65.00",
+    "image": "jacket"
+  },
+  {
+    "id": 8,
+    "label": "NEW",
+    "labelColor": "bg-pink-400",
+    "category": "SKIRT",
+    "title": "Black Floral Wrap Midi Skirt",
+    "rating": 5,
+    "price": "$25.00",
+    "oldPrice": "$35.00",
+    "image": "jacket"
+  },
+  {
+    "id": 9,
+    "label": "15%",
+    "labelColor": "bg-green-500",
+    "category": "JACKET",
+    "title": "Mens Winter Leathers Jackets",
+    "rating": 3,
+    "price": "$48.00",
+    "oldPrice": "$75.00",
+    "image": "jacket"
+  },
+  {
+    "id": 10,
+    "label": "SALE",
+    "labelColor": "bg-black",
+    "category": "SHIRT",
+    "title": "Pure Garment Dyed Cotton Shirt",
+    "rating": 3,
+    "price": "$45.00",
+    "oldPrice": "$56.00",
+    "image": "jacket"
+  },
+  {
+    "id": 11,
+    "label": "",
+    "labelColor": "",
+    "category": "JACKET",
+    "title": "MEN Yarn Fleece Full-Zip Jacket",
+    "rating": 3,
+    "price": "$58.00",
+    "oldPrice": "$65.00",
+    "image": "jacket"
+  },
+  {
+    "id": 12,
+    "label": "NEW",
+    "labelColor": "bg-pink-400",
+    "category": "SKIRT",
+    "title": "Black Floral Wrap Midi Skirt",
+    "rating": 5,
+    "price": "$25.00",
+    "oldPrice": "$35.00",
+    "image": "jacket"
+  },
+
+  {
+  "newArrivals": [
+    {
+      "title": "Relaxed Short Full Sleep",
+      "category": "Clothes",
+      "price": 45,
+      "oldPrice": 120
+    },
+    {
+      "title": "Girls Pnk Embro Design",
+      "category": "Clothes",
+      "price": 61,
+      "oldPrice": 90
+    },
+    {
+      "title": "Black Floral Wrap Midi",
+      "category": "Clothes",
+      "price": 76,
+      "oldPrice": 25
+    },
+    {
+      "title": "Pure Garment Dyed Coat",
+      "category": "Mens Fashion",
+      "price": 68,
+      "oldPrice": 31
+    }
+  ],
+  "trending": [
+    {
+      "title": "Running & Trekking Shoes",
+      "category": "Sports",
+      "price": 49,
+      "oldPrice": 150
+    },
+    {
+      "title": "Trekking & Running Shoes",
+      "category": "Sports",
+      "price": 78,
+      "oldPrice": 36
+    },
+    {
+      "title": "Women's Party Wear Shoes",
+      "category": "Party Wear",
+      "price": 94,
+      "oldPrice": 42
+    },
+    {
+      "title": "Sports Claw Women's Shoes",
+      "category": "Sports",
+      "price": 54,
+      "oldPrice": 65
+    }
+  ],
+  "topRated": [
+    {
+      "title": "Pocket Watch Leather Band",
+      "category": "Watches",
+      "price": 50,
+      "oldPrice": 34
+    },
+    {
+      "title": "Silver Deer Heart Necklace",
+      "category": "Jewellery",
+      "price": 84,
+      "oldPrice": 30
+    },
+    {
+      "title": "Titan 100 Ml Womens Perfume",
+      "category": "Perfume",
+      "price": 42,
+      "oldPrice": 10
+    },
+    {
+      "title": "Men's Leather Reversible Belt",
+      "category": "Belt",
+      "price": 24,
+      "oldPrice": 10
+    }
+  ]
+}
+
+]

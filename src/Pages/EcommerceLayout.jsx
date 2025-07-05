@@ -1,303 +1,69 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import cloth1 from '../assets/images/products/clothes-1.jpg'
 import { Progress } from "@material-tailwind/react";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faEye, faRefresh, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-
 import '../CSS/sale.css'
-// icon section
-import dress from '../assets/images/icons/dress.svg'
-import shoe from '../assets/images/icons/shoes.svg'
-import jewelry from '../assets/images/icons/jewelry.svg'
-import perfume from '../assets/images/icons/perfume.svg'
-import cosmetics from '../assets/images/icons/cosmetics.svg'
-import glass from '../assets/images/icons/glasses.svg'
-import bag from '../assets/images/icons/bag.svg'
 
 
 
-//best-seller-image
-import babyShoe from '../assets/images/products/1.jpg'
-import menCloth from '../assets/images/products/2.jpg'
-import girlShirt from '../assets/images/products/3.jpg'
-import Hat from '../assets/images/products/4.jpg'
+
 
 
 //Deal of the day 
 import shampo from '../assets/images/products/shampoo.jpg'
 
-// new product section images 
-import jacket from '../assets/images/products/jacket-1.jpg'
-import jacket2 from '../assets/images/products/jacket-2.jpg'
-import jacket3 from '../assets/images/products/jacket-3.jpg'
-import jacket4 from '../assets/images/products/jacket-4.jpg'
-import jacket5 from '../assets/images/products/jacket-5.jpg'
-import jacket6 from '../assets/images/products/jacket-6.jpg'
 
-import shirt1 from '../assets/images/products/shirt-1.jpg'
-import shirt2 from '../assets/images/products/shirt-2.jpg'
-
-// import jewellery1 from '../assets/images/products/jewelry-1.jpg'
-// import jewellery2 from '../assets/images/products/jewelry-2.jpg'
-// import jewellery3 from '../assets/images/products/jewelry-3.jpg'
-
-import partyWear1 from '../assets/images/products/party-wear-1.jpg'
-import partyWear2 from '../assets/images/products/party-wear-2.jpg'
-
-import watch from '../assets/images/products/watch-1.jpg'
-import watch2 from '../assets/images/products/watch-2.jpg'
-import watch3 from '../assets/images/products/watch-3.jpg'
-import watch4 from '../assets/images/products/watch-4.jpg'
-
-import shoe1 from '../assets/images/products/shoe-1.jpg'
-import shoe2 from '../assets/images/products/shoe-2.jpg'
-import shoe3 from '../assets/images/products/shoe-3.jpg'
-import shoe4 from '../assets/images/products/shoe-4.jpg'
-import shoe5 from '../assets/images/products/shoe-5.jpg'
-
-import shorts1 from '../assets/images/products/shorts-1.jpg'
-import shorts2 from '../assets/images/products/shorts-2.jpg'
-
-import sports from '../assets/images/products/sports-1.jpg'
-import sports2 from '../assets/images/products/sports-2.jpg'
-import sports3 from '../assets/images/products/sports-3.jpg'
-import sports4 from '../assets/images/products/sports-4.jpg'
-import sports5 from '../assets/images/products/sports-5.jpg'
-import sports6 from '../assets/images/products/sports-6.jpg'
-
-import cloth3 from '../assets/images/products/clothes-3.jpg'
-import cloth4 from '../assets/images/products/clothes-4.jpg'
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const EcommerceLayout = () => {
 
+    const [products, setProducts] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [bestSellers, SetbestSellers] = useState([])
+    const [timeline, setTimeline] = useState([])
 
     const sold = 20;
     const available = 40;
     const total = sold + available;
     const percentageSold = (sold / total) * 100;
-
-
     const [openIndex, setOpenIndex] = useState(null);
     const contentRefs = useRef([]);
-    const categories = [
-        {
-            name: "Clothes",
-            icon: dress,
-            subItems: [
-                { name: "Shirt", count: 300 },
-                { name: "Shorts & Jeans", count: 120 },
-                { name: "Jacket", count: 80 },
-                { name: "Dress & Frock", count: 80 },
-            ],
-        },
-        {
-            name: "Footwear",
-            icon: shoe,
-            subItems: [
-                { name: "Sports", count: 150 },
-                { name: "Formal", count: 60 },
-                { name: "Casual", count: 45 },
-                { name: "Safety Shoes", count: 45 },
-            ],
-        },
-        {
-            name: "Jewelry",
-            icon: jewelry,
-            subItems: [
-                { name: "Earrings", count: 40 },
-                { name: "Couple Rings", count: 50 },
-                { name: "Necklace", count: 30 },
-            ],
-        },
-        {
-            name: "Perfume",
-            icon: perfume,
-            subItems: [
-                { name: "Clothes Perfume", count: 40 },
-                { name: "Deodorant", count: 50 },
-                { name: "Flower Fragrance", count: 30 },
-                { name: "Air Freshener", count: 30 },
-            ],
-        },
-        {
-            name: "Cosmetics",
-            icon: cosmetics,
-            subItems: [
-                { name: "Shampoo", count: 40 },
-                { name: "Sunscreen", count: 50 },
-                { name: "Body Wash", count: 30 },
-                { name: "Makeup kit", count: 30 },
-            ],
-        },
-        {
-            name: "Glasses",
-            icon: glass,
-            subItems: [
-                { name: "Sunglasses", count: 40 },
-                { name: "Lenses", count: 50 },
 
-            ],
-        },
-        {
-            name: "Bags",
-            icon: bag,
-            subItems: [
-                { name: "Shopping Bag", count: 40 },
-                { name: "Gym Backpack", count: 50 },
-                { name: "Purse", count: 30 },
-                { name: "Wallet", count: 30 },
-            ],
-        },
-        // ...add rest like Perfume, Cosmetics, etc.
-    ];
+    useEffect(() => {
+        fetch("/BestSeller.json")
+            .then(res => res.json())
+            .then((data) => SetbestSellers(data))
+
+    }, [])
+       useEffect(() => {
+        fetch("/timeline.json")
+            .then(res => res.json())
+            .then((data) => setTimeline(data))
+
+    }, [])
+     console.log(timeline);
+
+
+    useEffect(() => {
+        fetch("/categories.json")
+            .then(res => res.json())
+            .then((data) => setCategories(data))
+    }, [])
+    // console.log(categories);
+
+    useEffect(() => {
+        fetch("/products.json")
+            .then(res => res.json())
+            .then((data) => setProducts(data))
+    }, [])
+   
 
 
 
 
-
-    const products = [
-        {
-            id: 1,
-            label: "15%",
-            labelColor: "bg-green-500",
-            category: "JACKET",
-            title: "Mens Winter Leathers Jackets",
-            rating: 3,
-            price: "$48.00",
-            oldPrice: "$75.00",
-            image: jacket3,
-            hoverImage: jacket4
-        },
-        {
-            id: 2,
-            label: "SALE",
-            labelColor: "bg-black",
-            category: "SHIRT",
-            title: "Pure Garment Dyed Cotton Shirt",
-            rating: 3,
-            price: "$45.00",
-            oldPrice: "$56.00",
-            image: shirt1,
-            hoverImage: shirt2
-        },
-        {
-            id: 3,
-            label: "",
-            labelColor: "",
-            category: "JACKET",
-            title: "MEN Yarn Fleece Full-Zip Jacket",
-            rating: 3,
-            price: "$58.00",
-            oldPrice: "$65.00",
-            image: jacket5,
-            hoverImage: jacket6
-
-        },
-        {
-            id: 4,
-            label: "NEW",
-            labelColor: "bg-pink-400",
-            category: "SKIRT",
-            title: "Black Floral Wrap Midi Skirt",
-            rating: 5,
-            price: "$25.00",
-            oldPrice: "$35.00",
-            image: cloth3,
-            hoverImage: cloth4
-        },
-
-        {
-            id: 1,
-            label: "15%",
-            labelColor: "bg-green-500",
-            category: "JACKET",
-            title: "Mens Winter Leathers Jackets",
-            rating: 3,
-            price: "$48.00",
-            oldPrice: "$75.00",
-            image: jacket
-        },
-        {
-            id: 2,
-            label: "SALE",
-            labelColor: "bg-black",
-            category: "SHIRT",
-            title: "Pure Garment Dyed Cotton Shirt",
-            rating: 3,
-            price: "$45.00",
-            oldPrice: "$56.00",
-            image: jacket
-        },
-        {
-            id: 3,
-            label: "",
-            labelColor: "",
-            category: "JACKET",
-            title: "MEN Yarn Fleece Full-Zip Jacket",
-            rating: 3,
-            price: "$58.00",
-            oldPrice: "$65.00",
-            image: jacket
-        },
-        {
-            id: 4,
-            label: "NEW",
-            labelColor: "bg-pink-400",
-            category: "SKIRT",
-            title: "Black Floral Wrap Midi Skirt",
-            rating: 5,
-            price: "$25.00",
-            oldPrice: "$35.00",
-            image: jacket
-        },
-        {
-            id: 1,
-            label: "15%",
-            labelColor: "bg-green-500",
-            category: "JACKET",
-            title: "Mens Winter Leathers Jackets",
-            rating: 3,
-            price: "$48.00",
-            oldPrice: "$75.00",
-            image: jacket
-        },
-        {
-            id: 2,
-            label: "SALE",
-            labelColor: "bg-black",
-            category: "SHIRT",
-            title: "Pure Garment Dyed Cotton Shirt",
-            rating: 3,
-            price: "$45.00",
-            oldPrice: "$56.00",
-            image: jacket
-        },
-        {
-            id: 3,
-            label: "",
-            labelColor: "",
-            category: "JACKET",
-            title: "MEN Yarn Fleece Full-Zip Jacket",
-            rating: 3,
-            price: "$58.00",
-            oldPrice: "$65.00",
-            image: jacket
-        },
-        {
-            id: 4,
-            label: "NEW",
-            labelColor: "bg-pink-400",
-            category: "SKIRT",
-            title: "Black Floral Wrap Midi Skirt",
-            rating: 5,
-            price: "$25.00",
-            oldPrice: "$35.00",
-            image: jacket
-        },
-    ];
 
     const toggleCategory = (index) => {
         setOpenIndex(openIndex === index ? null : index);
@@ -325,12 +91,6 @@ const EcommerceLayout = () => {
 
 
 
-    const bestSellers = [
-        { image: babyShoe, name: "Baby Fabric Shoes", price: 4.00, old: 5.00, rating: 4 },
-        { image: menCloth, name: "Men's Hoodies T-Shirt", price: 7.00, old: 17.00, rating: 3.5 },
-        { image: girlShirt, name: "Girls T-Shirt", price: 3.00, old: 5.00, rating: 5 },
-        { image: Hat, name: "Woolen Hat For Men", price: 12.00, old: 15.00, rating: 4.5 },
-    ];
 
 
     const newArrivals = [
@@ -488,7 +248,7 @@ const EcommerceLayout = () => {
                             <span className="text-red-400 font-bold text-xl">$150.00</span>{" "}
                             <span className="line-through text-gray-400">$200.00</span>
                         </p>
-                        <button className="mt-3 bg-red-400 text-white px-4 py-2 rounded-lg">ADD TO CART</button>
+                        <button className="mt-3 bg-red-400 text-white px-4 py-2 rounded-lg hover:bg-black transition-colors duration-300">ADD TO CART</button>
 
                         <div className="max-w-md mx-auto  space-y-4">
                             <div className="flex justify-between text-sm font-semibold mt-2">

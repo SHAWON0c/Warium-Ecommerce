@@ -6,13 +6,14 @@ import electronic2 from '../assets/images/banner/electronics-banner-2.jpg'
 import men from '../assets/images/banner/mens-banner.jpg'
 import women from '../assets/images/banner/womens-banner.jpg'
 import '../CSS/style.css'
+import { NavLink } from "react-router";
 
 
 const Navbar = () => (
   <div className="">
     {/* Top bar */}
 
-   
+
     <div className="flex justify-between items-center px-6 py-2 text-sm w-5/6 mx-auto">
       <div className="flex space-x-2 text-gray-500">
         <FaFacebookF />
@@ -26,7 +27,7 @@ const Navbar = () => (
         <span>ENGLISH</span>
       </div>
     </div>
-     <div className=' border-b'></div>
+    <div className=' border-b'></div>
 
     {/* Main Navbar */}
     <div className="flex items-center justify-between  px-6 py-4 w-5/6 mx-auto">
@@ -41,35 +42,35 @@ const Navbar = () => (
           <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500">[icon ashbe] search</span>
         </div>
       </div>
-     <div className="flex space-x-4 text-gray-700">
-  {/* User Icon with Dropdown */}
-  <div className="relative group">
-    <User className="w-6 h-6 cursor-pointer" />
-    <div className="absolute w-32 top-full -right-24 z-10 hidden group-hover:flex transition-all duration-400 ease-in-out flex-col space-y-1 bg-white shadow-md border rounded-md p-2 text-md">
-      <button className="hover:text-red-400 text-left">Log In</button>
-      <button className="hover:text-red-400 text-left">Log Out</button>
-      <button className="hover:text-red-400 text-left">Dashboard</button>
-    </div>
-  </div>
+      <div className="flex space-x-4 text-gray-700">
+        {/* User Icon with Dropdown */}
+        <div className="relative group">
+          <User className="w-6 h-6 cursor-pointer" />
+          <div className="absolute w-32 top-full -right-24 z-10 hidden group-hover:flex transition-all duration-400 ease-in-out flex-col space-y-1 bg-white shadow-md border rounded-md p-2 text-md">
+            <button className="hover:text-red-400 text-left">Log In</button>
+            <button className="hover:text-red-400 text-left">Log Out</button>
+            <button className="hover:text-red-400 text-left">Dashboard</button>
+          </div>
+        </div>
 
-  {/* Heart Icon with Tooltip */}
-  <div className="relative group">
-    <Heart className="w-6 h-6 cursor-pointer" />
-    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1">0</span>
-    <div className="absolute hidden group-hover:block bg-white shadow-md border rounded-md p-1 top-full right-0 z-10 text-xs transition-all duration-500">
-      Wishlist
-    </div>
-  </div>
+        {/* Heart Icon with Tooltip */}
+        <div className="relative group">
+          <Heart className="w-6 h-6 cursor-pointer" />
+          <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1">0</span>
+          <div className="absolute hidden group-hover:block bg-white shadow-md border rounded-md p-1 top-full right-0 z-10 text-xs transition-all duration-500">
+            Wishlist
+          </div>
+        </div>
 
-  {/* Shopping Bag Icon with Tooltip */}
-  <div className="relative group">
-    <ShoppingBag className="w-6 h-6 cursor-pointer" />
-    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1">0</span>
-    <div className="absolute hidden group-hover:block bg-white shadow-md border rounded-md p-1 top-full right-0 z-10 text-xs">
-      Left Shopping Cart
-    </div>
-  </div>
-</div>
+        {/* Shopping Bag Icon with Tooltip */}
+        <div className="relative group">
+          <ShoppingBag className="w-6 h-6 cursor-pointer" />
+          <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1">0</span>
+          <div className="absolute hidden group-hover:block bg-white shadow-md border rounded-md p-1 top-full right-0 z-10 text-xs">
+            Left Shopping Cart
+          </div>
+        </div>
+      </div>
 
     </div>
 
@@ -220,8 +221,8 @@ const Navbar = () => (
               <li className="text-gray-500 hover:text-red-400 cursor-pointer transition-colors duration-300">Dress & Frock</li>
               <li className="text-gray-500 hover:text-red-400 cursor-pointer transition-colors duration-300">Earrings</li>
               <li className="text-gray-500 hover:text-red-400 cursor-pointer transition-colors duration-300">Necklace</li>
-               <li className="text-gray-500 hover:text-red-400 cursor-pointer transition-colors duration-300">Makeup kit</li>
-              
+              <li className="text-gray-500 hover:text-red-400 cursor-pointer transition-colors duration-300">Makeup kit</li>
+
             </ul>
 
           </div>
@@ -264,6 +265,15 @@ const Navbar = () => (
       <div className='group relative inline-block'>
         <a href="#" className="text-gray-700 transition-colors duration-300 group-hover:text-red-400e">HOT OFFERS</a>
         <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-red-400 transition-all duration-300 ease-in-out group-hover:w-full"></span>
+      </div>
+      <NavLink to="/aboutus">
+
+        <p href="#" className="text-gray-700 transition-colors duration-300 group-hover:text-red-400e">ABOUT US</p>
+        <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-red-400 transition-all duration-300 ease-in-out group-hover:w-full"></span>
+
+      </NavLink>
+      <div className='group relative inline-block'>
+
       </div>
     </nav>
   </div>
