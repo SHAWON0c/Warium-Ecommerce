@@ -272,8 +272,15 @@ const Navbar = () => (
         <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-red-400 transition-all duration-300 ease-in-out group-hover:w-full"></span>
 
       </NavLink>
-      <div className='group relative inline-block'>
 
+     
+      <div className='group relative inline-block'>
+ <NavLink to="/login">
+
+        <p href="#" className="text-gray-700 transition-colors duration-300 group-hover:text-red-400e">Login</p>
+        <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-red-400 transition-all duration-300 ease-in-out group-hover:w-full"></span>
+
+      </NavLink>
       </div>
     </nav>
   </div>

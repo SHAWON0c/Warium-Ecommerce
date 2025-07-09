@@ -4,6 +4,9 @@ import {
 import Main from "../Layouts/Main";
 import Home from "../Pages/Home";
 import AboutUs from "../Pages/AboutUs";
+import VendorUplaod from "../Pages/VendorUplaod";
+import Login from "../Pages/Login/Login";
+import Register from "../Pages/Register/Register";
 
 export const router = createBrowserRouter([
   {
@@ -19,6 +22,15 @@ export const router = createBrowserRouter([
           path:'aboutus',
           element:<AboutUs></AboutUs>
 
+        },
+        {
+          path:'vendor_upload',
+          element:<VendorUplaod></VendorUplaod>
+
+        },
+        {
+          path:'login',
+          element:<Register></Register>
         }
     ]
 

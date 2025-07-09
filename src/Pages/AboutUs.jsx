@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import aboutImg from '../assets/images/about/1.jpg';
+
 const testimonials = [
     {
         id: 1,
@@ -30,54 +31,87 @@ const testimonials = [
     },
 ];
 
+const images = [
+    "/img1.jpg",
+    "/img2.jpg",
+    "/img3.jpg",
+    "/img4.jpg",
+    "/img5.jpg",
+    "/img6.jpg",
+    "/img7.jpg",
+    "/img8.jpg",
+];
 
 const AboutUs = () => {
-
     const [current, setCurrent] = useState(0);
+    const scrollRef = useRef(null); // ✅ ADD THIS LINE
 
     const handleSelect = (index) => {
         setCurrent(index);
     };
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (scrollRef.current) {
+                scrollRef.current.scrollLeft += 1;
+                if (
+                    scrollRef.current.scrollLeft + scrollRef.current.clientWidth >=
+                    scrollRef.current.scrollWidth
+                ) {
+                    scrollRef.current.scrollLeft = 0; // Reset when end is reached
+                }
+            }
+        }, 20); // Speed control
+
+        return () => clearInterval(interval);
+    }, []);
+
     const { name, position, comment, rating } = testimonials[current];
+
     return (
         <div>
+            {/* Breadcrumb */}
             <div className="w-full bg-gray-100 border">
                 <div className="h-[55px] max-w-[1320px] mx-auto flex justify-between items-center px-4">
                     <h1 className="text-lg font-semibold">About Us</h1>
-                    <h2 className="text-sm text-gray-600">Home &gt;&gt; About Us</h2>
+                    <nav className="flex items-center text-md text-gray-600 space-x-1 gap-2">
+                        <span>Home</span>
+                        <span className="mx-1 text-lg text-red-400">››</span>
+                        <span className='text-red-400'>About us</span>
+                    </nav>
                 </div>
             </div>
 
-            <div className='flex flex-col justify-center  mx-auto items-center max-w-[1320px] mt-20'>
-                <h1 className='text-black text-3xl font-bold mb-2'> About Us</h1>
-                <p className='text-sm text-gray-500'> about our Business website</p>
-
-
+            {/* About Section */}
+            <div className="flex flex-col justify-center mx-auto items-center max-w-[1320px] mt-20">
+                <h1 className="text-black text-3xl font-bold mb-2">About Us</h1>
+                <p className="text-sm text-gray-500">about our Business website</p>
             </div>
-            <div className='flex items-center  max-w-[1320px] mx-auto mt-10 gap-6 '>
-                <img
-                    className='w-[670px] h-auto'
-                    src={aboutImg} alt="" />
-                <div className=''>
-                    <h1 className='text-xl text-gray-500 pb-2 font-semibold'>What is Warium?</h1>
-                    <p className='pb-2 text-left t text-base text-gray-700'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam fuga quo commodi quas labore itaque, eos nihil perferendis nulla? Id odio magnam accusamus veniam fuga, doloribus maiores dignissimos minus asperiores?
+
+            <div className="flex items-center max-w-[1320px] mx-auto mt-10 gap-6">
+                <img className="w-[670px] h-auto" src={aboutImg} alt="About" />
+                <div>
+                    <h1 className="text-xl text-gray-500 pb-2 font-semibold">What is Warium?</h1>
+                    <p className="pb-2 text-left text-base text-gray-700">
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam fuga quo commodi quas labore itaque, eos nihil perferendis nulla? Id odio magnam accusamus veniam fuga, doloribus maiores dignissimos minus asperiores?
                     </p>
-                    <p className='pb-2 text-left text-base text-gray-700'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, repellat numquam. Magnam fugit modi esse! Accusamus eligendi quisquam sequi consequuntur. Rem reiciendis qui saepe laudantium placeat reprehenderit dolore tempore quod.</p>
-                    <p className='text-base text-gray-700' >Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem obcaecati perspiciatis tempora, quis vel ea, reiciendis voluptates dolorum alias neque sint dolores consectetur eius rerum. Totam quis quasi ad vel!</p>
+                    <p className="pb-2 text-left text-base text-gray-700">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, repellat numquam. Magnam fugit modi esse! Accusamus eligendi quisquam sequi consequuntur. Rem reiciendis qui saepe laudantium placeat reprehenderit dolore tempore quod.
+                    </p>
+                    <p className="text-base text-gray-700">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem obcaecati perspiciatis tempora, quis vel ea, reiciendis voluptates dolorum alias neque sint dolores consectetur eius rerum. Totam quis quasi ad vel!
+                    </p>
                 </div>
             </div>
 
-
-{/* testimonial */}
+            {/* Testimonial */}
             <div className="bg-[#F9F9F9] py-16 mt-10">
                 <div className="text-center mb-10">
                     <h2 className="text-3xl font-semibold text-gray-800">Client Review</h2>
                     <p className="text-gray-500 mt-2">What say client about us</p>
                 </div>
 
-                {/* SLIDER */}
+                {/* Slider */}
                 <div className="relative overflow-hidden max-w-4xl mx-auto rounded-3xl">
                     <div
                         className="flex transition-transform duration-700 ease-in-out"
@@ -102,7 +136,7 @@ const AboutUs = () => {
                     </div>
                 </div>
 
-                {/* IMAGES */}
+                {/* Images */}
                 <div className="flex justify-center space-x-4 mt-8">
                     {testimonials.map((t, index) => (
                         <img
@@ -116,6 +150,27 @@ const AboutUs = () => {
                     ))}
                 </div>
             </div>
+
+            {/* Instagram Feed */}
+            <section className="py-16 bg-white">
+                <div className="text-center mb-8">
+                    <h2 className="text-3xl font-bold text-gray-800">Instagram Feed</h2>
+                    <p className="text-gray-500">Share your store with us</p>
+                </div>
+
+                <div className="relative overflow-hidden">
+                    <div className="flex animate-insta-slide">
+                        {images.concat(images).map((src, index) => (
+                            <img
+                                key={index}
+                                src={src}
+                                alt={`Insta ${index + 1}`}
+                                className="w-64 h-72 object-cover rounded-md shrink-0 mx-2"
+                            />
+                        ))}
+                    </div>
+                </div>
+            </section>
 
         </div>
     );
