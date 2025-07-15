@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "title": "Mens Winter Leather",
+    "price": 49.0,
+    "quantity": 1,
+    "image": "https://i.ibb.co/gFFhh5v5/jacket-3.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Running & Trekking Shoes",
+    "price": 150.0,
+    "quantity": 1,
+    "image": "https://i.ibb.co/DY0Vw7X/shoe.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Rose Gold Peacock Earrings",
+    "price": 950.0,
+    "quantity": 1,
+    "image": "https://i.ibb.co/ZYW3VTp/buy-1.jpg"
+  }
+]

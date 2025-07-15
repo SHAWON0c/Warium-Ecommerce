@@ -10,6 +10,7 @@ import TestimonialServices from './TestimonialServices';
 import BlogSection from './BlogSection';
 import BrandDirectory from './BrandDirectory';
 import Footer from '../Shared/Footer';
+import CartDrawer from './User/Cart';
 
 
 const Home = () => {
@@ -26,6 +27,7 @@ const Home = () => {
                
 
             </div>
+            <CartDrawer></CartDrawer>
              <BrandDirectory></BrandDirectory>
           
              </div>

@@ -1,0 +1,54 @@
+[
+  {
+    "id": 1,
+    "label": "15%",
+    "labelColor": "bg-green-500",
+    "category": "JACKET",
+    "title": "Mens Winter Leathers Jackets",
+    "rating": 3,
+    "price": "$48.00",
+    "oldPrice": "$75.00",
+    "image": "https://i.ibb.co/gFFhh5v5/jacket-3.jpg",
+    "hoverImage": "https://i.ibb.co/9kVNR4p2/jacket-4.jpg",
+    "colors": ["Red", "Green", "Blue"]
+  },
+  {
+    "id": 2,
+    "label": "20%",
+    "labelColor": "bg-red-400",
+    "category": "SHIRT",
+    "title": "Pure Garment Dyed Cotton Shirt",
+    "rating": 3,
+    "price": "$45.00",
+    "oldPrice": "$56.00",
+    "image": "https://i.ibb.co/JhKv2TL/shirt-1.jpg",
+    "hoverImage": "https://i.ibb.co/WWg2qGhd/shirt-2.jpg",
+    "colors": ["White", "Black", "Yellow"]
+  },
+  {
+    "id": 3,
+    "label": "",
+    "labelColor": "",
+    "category": "JACKET",
+    "title": "MEN Yarn Fleece Full-Zip Jacket",
+    "rating": 3,
+    "price": "$58.00",
+    "oldPrice": "$65.00",
+    "image": "https://i.ibb.co/gLB4rZkY/jacket-5.jpg",
+    "hoverImage": "https://i.ibb.co/HTMpBMQY/jacket-6.jpg",
+    "colors": ["Gray", "Navy", "Black"]
+  },
+    {
+    "id": 2,
+    "label": "20%",
+    "labelColor": "bg-red-400",
+    "category": "SHIRT",
+    "title": "Pure Garment Dyed Cotton Shirt",
+    "rating": 3,
+    "price": "$45.00",
+    "oldPrice": "$56.00",
+    "image": "https://i.ibb.co/JhKv2TL/shirt-1.jpg",
+    "hoverImage": "https://i.ibb.co/WWg2qGhd/shirt-2.jpg",
+    "colors": ["White", "Black", "Yellow"]
+  }
+]

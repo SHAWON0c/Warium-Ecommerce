@@ -7,9 +7,18 @@ import men from '../assets/images/banner/mens-banner.jpg'
 import women from '../assets/images/banner/womens-banner.jpg'
 import '../CSS/style.css'
 import { NavLink } from "react-router";
+import CartDrawer from '../Pages/User/Cart';
 
 
-const Navbar = () => (
+
+
+
+const Navbar = () => {
+  
+    const [isCartOpen, setIsCartOpen] = useState(false);
+  
+  return (
+
   <div className="">
     {/* Top bar */}
 
@@ -64,7 +73,13 @@ const Navbar = () => (
 
         {/* Shopping Bag Icon with Tooltip */}
         <div className="relative group">
-          <ShoppingBag className="w-6 h-6 cursor-pointer" />
+          <button
+             onClick={() => setIsCartOpen(true)}
+           >
+            <ShoppingBag 
+         
+          className="w-6 h-6 cursor-pointer " />
+          </button>
           <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1">0</span>
           <div className="absolute hidden group-hover:block bg-white shadow-md border rounded-md p-1 top-full right-0 z-10 text-xs">
             Left Shopping Cart
@@ -273,17 +288,20 @@ const Navbar = () => (
 
       </NavLink>
 
-     
+
       <div className='group relative inline-block'>
- <NavLink to="/login">
+        <NavLink to="/login">
 
-        <p href="#" className="text-gray-700 transition-colors duration-300 group-hover:text-red-400e">Login</p>
-        <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-red-400 transition-all duration-300 ease-in-out group-hover:w-full"></span>
+          <p href="#" className="text-gray-700 transition-colors duration-300 group-hover:text-red-400e">Login</p>
+          <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-red-400 transition-all duration-300 ease-in-out group-hover:w-full"></span>
 
-      </NavLink>
+        </NavLink>
       </div>
     </nav>
+
+<CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+
   </div>
 );
-
+}
 export default Navbar;
