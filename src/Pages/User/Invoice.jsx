@@ -24,7 +24,7 @@ const componentRef = useRef<HTMLDivElement>('hello');
                 <div className="space-x-2">
                     <button
                         onClick={()=>{
-                            console.log('Button clicked');
+                            //('Button clicked');
                             handlePrint();
                         }}
                         

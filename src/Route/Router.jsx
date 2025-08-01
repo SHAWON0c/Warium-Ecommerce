@@ -13,6 +13,12 @@ import History from "../Pages/User/History";
 import Invoice from "../Pages/User/Invoice";
 import Wishlist from "../Pages/User/Wishlist";
 import Cart from "../Pages/User/Cart";
+import PrivateRoute from "./PrivateRoute";
+import Secrate from "../Shared/Secrate";
+import Redirect from "./Redirect";
+import AdminDashboard from "../DashBoard/AdminDashboard/AdminDashboard";
+import DashBoard from "../Layouts/DashBoard";
+import AdminRequest from "../Pages/AdminRequest/AdminRequest";
 
 export const router = createBrowserRouter([
   {
@@ -66,8 +72,36 @@ export const router = createBrowserRouter([
           path:'cart',
           element:<Cart></Cart>
 
+        },
+        {
+          path:'login',
+          element:<Redirect><Login></Login></Redirect>
+        },
+        {
+          path:'register',
+          element:<Register></Register>
+        },
+        {
+          path:'secrate',
+          element:<PrivateRoute><Secrate></Secrate></PrivateRoute>
         }
     ]
 
   },
+
+  {
+    path:'dashboard',
+    element:<DashBoard></DashBoard>,
+    children:
+    [
+      {
+        path:'admin',
+        element:<AdminDashboard></AdminDashboard>
+      },
+      {
+        path:'makeAdmin',
+        element:<AdminRequest></AdminRequest>
+      }
+    ]
+  }
 ]);

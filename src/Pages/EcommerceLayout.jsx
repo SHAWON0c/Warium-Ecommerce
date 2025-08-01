@@ -1,22 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import cloth1 from '../assets/images/products/clothes-1.jpg'
 import { Progress } from "@material-tailwind/react";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faEye, faRefresh, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import '../CSS/sale.css'
 
-
-
-
-
-
 //Deal of the day 
 import shampo from '../assets/images/products/shampoo.jpg'
-
-
-
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { AuthContext } from "../Provider/AuthProvider";
+import UseAuth from "../hooks/UseAuth";
+import Swal from 'sweetalert2'
+import { useNavigate } from "react-router-dom";
+
+import UseAxiosSecure from "../hooks/UseAxiosSecure";
+import Usecart from "../hooks/Usecart";
 
 const EcommerceLayout = () => {
 
@@ -31,6 +29,12 @@ const EcommerceLayout = () => {
     const percentageSold = (sold / total) * 100;
     const [openIndex, setOpenIndex] = useState(null);
     const contentRefs = useRef([]);
+    const { user } = UseAuth();
+    const axiosSecure = UseAxiosSecure();
+
+    const navigate = useNavigate();
+    const [cart, isLoading, isError, refetch] = Usecart();
+
 
     useEffect(() => {
         fetch("/BestSeller.json")
@@ -38,13 +42,13 @@ const EcommerceLayout = () => {
             .then((data) => SetbestSellers(data))
 
     }, [])
-       useEffect(() => {
+    useEffect(() => {
         fetch("/timeline.json")
             .then(res => res.json())
             .then((data) => setTimeline(data))
 
     }, [])
-     console.log(timeline);
+    //(timeline);
 
 
     useEffect(() => {
@@ -52,14 +56,15 @@ const EcommerceLayout = () => {
             .then(res => res.json())
             .then((data) => setCategories(data))
     }, [])
-    // console.log(categories);
+    // //(categories);
 
     useEffect(() => {
-        fetch("/products.json")
+        fetch("http://localhost:5000/products")
             .then(res => res.json())
             .then((data) => setProducts(data))
+
     }, [])
-   
+
 
 
 
@@ -68,6 +73,48 @@ const EcommerceLayout = () => {
     const toggleCategory = (index) => {
         setOpenIndex(openIndex === index ? null : index);
     };
+
+    const handleAddToCart = product => {
+        if (user && user.email) {
+            //toDo:sent to database
+            // //(user, product);
+            const carItem = {
+                ProductMainID: product._id,
+                email: user.email,
+                title: product.title,
+                price: product.price,
+                image: product.image
+            }
+            axiosSecure.post('/carts', carItem)
+                .then(res => {
+                    //(res.data);
+                    refetch(); // <-- add parentheses to call the function
+                })
+                .catch(error => {
+                    console.error('Error adding to cart:', error);
+                });
+
+
+
+        }
+        else {
+
+            Swal.fire({
+                title: "Login Required?",
+                text: "You won't be able to add cart without login",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "login"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate('/login');
+                }
+            });
+        }
+
+    }
 
 
 
@@ -297,6 +344,7 @@ const EcommerceLayout = () => {
                     {products.map((product) => (
                         <div
                             key={product.id}
+
                             className="border rounded-xl p-4 relative hover:shadow-lg transition bg-white overflow-hidden group"
                         >
                             {/* SALE Label - Fixed Position */}
@@ -339,7 +387,7 @@ const EcommerceLayout = () => {
                                     <button className="w-7 h-7 flex items-center justify-center bg-white rounded shadow  hover:bg-black  hover:text-white">
                                         <FontAwesomeIcon icon={faRefresh} className="text-sm" />
                                     </button>
-                                    <button className="w-7 h-7 flex items-center justify-center bg-white rounded shadow  hover:bg-black  hover:text-white ">
+                                    <button onClick={() => handleAddToCart(product)} className="w-7 h-7 flex items-center justify-center bg-white rounded shadow  hover:bg-black  hover:text-white ">
                                         <FontAwesomeIcon icon={faShoppingCart} className="text-sm" />
                                     </button>
                                 </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { Heart, ShoppingBag, User } from "lucide-react";
 import electronic1 from '../assets/images/banner/electronics-banner-1.jpg'
@@ -6,15 +6,46 @@ import electronic2 from '../assets/images/banner/electronics-banner-2.jpg'
 import men from '../assets/images/banner/mens-banner.jpg'
 import women from '../assets/images/banner/womens-banner.jpg'
 import '../CSS/style.css'
-import { NavLink } from "react-router";
+import { Navigate, NavLink } from "react-router";
 import CartDrawer from '../Pages/User/Cart';
+import { AuthContext } from '../Provider/AuthProvider';
+import Swal from 'sweetalert2';
 
-
-
-
+import { useNavigate } from "react-router";
+import Usecart from '../hooks/Usecart';
 
 const Navbar = () => {
-  
+  const {user , logOut}= useContext(AuthContext);
+  const [cart]=Usecart();
+
+
+const navigate = useNavigate();
+const handleLogout = () => {
+  logOut()
+    .then(() => {
+      //("Logged out successfully");
+
+      Swal.fire({
+        title: "Logged Out",
+        icon: "success",
+        background: "#f0f0ff",
+        color: "#333",
+        confirmButtonColor: "#F87171",
+        iconColor: "#F87171",
+        timer: 1000,
+        showConfirmButton: false,
+      });
+
+       // Correct way to navigate programmatically
+       navigate('/login'); 
+    })
+
+    .catch(error => {
+      console.error("Logout failed:", error);
+    });
+};
+
+
     const [isCartOpen, setIsCartOpen] = useState(false);
   
   return (
@@ -56,8 +87,12 @@ const Navbar = () => {
         <div className="relative group">
           <User className="w-6 h-6 cursor-pointer" />
           <div className="absolute w-32 top-full -right-24 z-10 hidden group-hover:flex transition-all duration-400 ease-in-out flex-col space-y-1 bg-white shadow-md border rounded-md p-2 text-md">
-            <button className="hover:text-red-400 text-left">Log In</button>
-            <button className="hover:text-red-400 text-left">Log Out</button>
+            {
+              user ? <> <button onClick={handleLogout} className="hover:text-red-400 text-left">Log Out</button> </> :<>
+                        <NavLink to="/login"> <button className="hover:text-red-400 text-left">Log In</button></NavLink>
+              </>
+            }
+           
             <button className="hover:text-red-400 text-left">Dashboard</button>
           </div>
         </div>
@@ -80,7 +115,7 @@ const Navbar = () => {
          
           className="w-6 h-6 cursor-pointer " />
           </button>
-          <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1">0</span>
+          <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1">{cart.length}</span>
           <div className="absolute hidden group-hover:block bg-white shadow-md border rounded-md p-1 top-full right-0 z-10 text-xs">
             Left Shopping Cart
           </div>
@@ -92,9 +127,9 @@ const Navbar = () => {
     {/* Bottom Navigation */}
     <nav className="flex justify-center space-x-8 border-t py-5 text-md font-semibold  relative">
       <div className="group relative inline-block">
-        <a href="#" className="text-gray-700 transition-colors duration-300 group-hover:text-red-400">
+        <NavLink to="/" className="text-gray-700 transition-colors duration-300 group-hover:text-red-400">
           HOME
-        </a>
+        </NavLink>
         <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-red-400 transition-all duration-300 ease-in-out group-hover:w-full"></span>
       </div>
 
@@ -289,14 +324,14 @@ const Navbar = () => {
       </NavLink>
 
 
-      <div className='group relative inline-block'>
+      {/* <div className='group relative inline-block'>
         <NavLink to="/login">
 
           <p href="#" className="text-gray-700 transition-colors duration-300 group-hover:text-red-400e">Login</p>
           <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-red-400 transition-all duration-300 ease-in-out group-hover:w-full"></span>
 
         </NavLink>
-      </div>
+      </div> */}
     </nav>
 
 <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />

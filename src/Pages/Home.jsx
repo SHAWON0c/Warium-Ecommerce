@@ -27,7 +27,7 @@ const Home = () => {
                
 
             </div>
-            <CartDrawer></CartDrawer>
+            <CartDrawer isopen={true}></CartDrawer>
              <BrandDirectory></BrandDirectory>
           
              </div>
