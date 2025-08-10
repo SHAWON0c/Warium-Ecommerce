@@ -4,7 +4,7 @@ import {
 import Main from "../Layouts/Main";
 import Home from "../Pages/Home";
 import AboutUs from "../Pages/AboutUs";
-import VendorUplaod from "../Pages/VendorUplaod";
+import VendorUplaod from "../DashBoard/VendorDashboard/VendorUplaod";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import UserProfile from "../Pages/User/UserProfile";
@@ -19,89 +19,107 @@ import Redirect from "./Redirect";
 import AdminDashboard from "../DashBoard/AdminDashboard/AdminDashboard";
 import DashBoard from "../Layouts/DashBoard";
 import AdminRequest from "../Pages/AdminRequest/AdminRequest";
+import MakeRequest from "../DashBoard/Request/MakeRequest";
+import Allusers from "../DashBoard/AdminDashboard/Allusers";
+import AllVendors from "../DashBoard/AdminDashboard/AllVendors";
+import Allmoderators from "../DashBoard/AdminDashboard/Allmoderators";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Main/>,
+    element: <Main />,
     children:
-    [
+      [
         {
-            path:'/',
-            element:<Home/>
+          path: '/',
+          element: <Home />
         },
         {
-          path:'aboutus',
-          element:<AboutUs></AboutUs>
+          path: 'aboutus',
+          element: <AboutUs></AboutUs>
+
+        },
+
+        {
+          path: 'wishlist',
+          element: <Wishlist></Wishlist>
+        },
+        {
+          path: 'cart',
+          element: <Cart></Cart>
 
         },
         {
-          path:'vendor_upload',
-          element:<VendorUplaod></VendorUplaod>
-
+          path: 'login',
+          element: <Redirect><Login></Login></Redirect>
         },
         {
-          path:'profile/',
-          element:<ProfileLayout></ProfileLayout>,
-          children:[
-            {
-              index:true,
-              element:<UserProfile></UserProfile>
-            },
-            {
-              path:'history',
-              element:<History></History>
-            },
-            {
-              path:'invoice',
-              element:<Invoice></Invoice>
-            }
-
-          ]
+          path: 'register',
+          element: <Register></Register>
         },
         {
-          path:'profile',
-          element:<UserProfile></UserProfile>
-
-        },
-        {
-          path:'wishlist',
-          element:<Wishlist></Wishlist>
-        },
-        {
-          path:'cart',
-          element:<Cart></Cart>
-
-        },
-        {
-          path:'login',
-          element:<Redirect><Login></Login></Redirect>
-        },
-        {
-          path:'register',
-          element:<Register></Register>
-        },
-        {
-          path:'secrate',
-          element:<PrivateRoute><Secrate></Secrate></PrivateRoute>
+          path: 'secrate',
+          element: <PrivateRoute><Secrate></Secrate></PrivateRoute>
         }
-    ]
+      ]
 
   },
 
   {
-    path:'dashboard',
-    element:<DashBoard></DashBoard>,
+    path: 'dashboard',
+    element: <PrivateRoute><DashBoard></DashBoard></PrivateRoute>,
     children:
-    [
-      {
-        path:'admin',
-        element:<AdminDashboard></AdminDashboard>
-      },
-      {
-        path:'makeAdmin',
-        element:<AdminRequest></AdminRequest>
-      }
-    ]
+      [
+        {
+          path: 'admin',
+          element: <AdminDashboard></AdminDashboard>
+        },
+        {
+          path: 'makeAdmin',
+          element: <AdminRequest></AdminRequest>
+        },
+        {
+          path: 'request',
+          element: <PrivateRoute><MakeRequest></MakeRequest></PrivateRoute>
+        },
+        {
+          path: 'all-users',
+          element: <Allusers></Allusers>
+        },
+        {
+          path: 'all-vendors',
+          element: <AllVendors></AllVendors>
+        },
+        {
+          path: 'all-moderators',
+          element: <Allmoderators></Allmoderators>
+        },
+        {
+          path: 'vendor-upload',
+          element: <VendorUplaod></VendorUplaod>
+        },
+        {
+          path: 'user-profile',
+          element: <UserProfile></UserProfile>
+        },
+        {
+          path: 'wishlist',
+          element: <Wishlist></Wishlist>
+        },
+        {
+          path: 'cart',
+          element: <Cart></Cart>
+
+        },
+        {
+          path:'invoice',
+          element: <Invoice></Invoice>
+        },
+        {
+          path: 'history',
+          element: <History></History>
+        }
+
+      ]
   }
 ]);

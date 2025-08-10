@@ -6,6 +6,7 @@ import {
     , GoogleAuthProvider, signInWithPopup
 } from "firebase/auth";
 import { app } from '../Firebase/firebase.config.js'; // ✅ Make sure you're importing your Firebase config
+import useAxiosPublic from '../hooks/useAxiosPublic.jsx';
 
 const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -13,6 +14,8 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => { // ✅ Should be lowercase `children`
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+
+    const axiosPublic=useAxiosPublic();
 
     const createUser = (email, password) => {
         setLoading(true);
@@ -50,7 +53,18 @@ const AuthProvider = ({ children }) => { // ✅ Should be lowercase `children`
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
-            //('Current user:', currentUser);
+            if(currentUser){
+                const userInfo={email: currentUser.email};
+                axiosPublic.post('jwt',userInfo)
+                .then(res =>{
+                    if(res.data.token){
+                        localStorage.setItem('access-token',res.data.token);
+                    }
+                    else{
+                        localStorage.removeItem('access-token',res.data.token);
+                    }
+                })
+            }
             setLoading(false);
         });
 

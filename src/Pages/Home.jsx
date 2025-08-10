@@ -17,7 +17,7 @@ const Home = () => {
     return (
         <div>
             {/* <Nabvar></Nabvar> */}
-            <div className='max-w-[1320px] mx-auto'>
+            <div className='max-w-[80%] mx-auto'>
 
                 <Herosection></Herosection>
                 <Categories></Categories>

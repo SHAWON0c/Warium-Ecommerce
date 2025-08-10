@@ -28,7 +28,7 @@ const Categories = () => {
   };
 
   return (
-    <div className="relative w-full max-w-[1320px] mx-auto px-4">
+    <div className="relative w-full max-w-full mx-auto px-4">
       <button
         onClick={() => scroll("left")}
         className="scroll-btn left"

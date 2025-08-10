@@ -93,7 +93,7 @@ const handleLogout = () => {
               </>
             }
            
-            <button className="hover:text-red-400 text-left">Dashboard</button>
+            <NavLink to='/dashboard'><button className="hover:text-red-400 text-left">Dashboard</button></NavLink>
           </div>
         </div>
 

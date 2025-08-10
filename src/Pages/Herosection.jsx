@@ -39,8 +39,8 @@ const Herosection = () => {
     <>
       <div
         ref={sliderRef}
+        className="flex items-center gap-2 overflow-x-auto snap-x snap-mandatory scroll-smooth rounded-lg mt-0 h-auto w-full mx-auto"
 
-        className="flex items-center gap-2 overflow-x-auto snap-x snap-mandatory scroll-smooth  rounded-lg mt-0 h-auto w-[1320px]"
       >
         {banners.map((banner, index) => (
           <div
