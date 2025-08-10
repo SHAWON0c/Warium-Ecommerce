@@ -23,6 +23,7 @@ import MakeRequest from "../DashBoard/Request/MakeRequest";
 import Allusers from "../DashBoard/AdminDashboard/Allusers";
 import AllVendors from "../DashBoard/AdminDashboard/AllVendors";
 import Allmoderators from "../DashBoard/AdminDashboard/Allmoderators";
+import VendorProductsDashboard from "../DashBoard/VendorDashboard/VendorProductsDashboard";
 
 export const router = createBrowserRouter([
   {
@@ -118,6 +119,10 @@ export const router = createBrowserRouter([
         {
           path: 'history',
           element: <History></History>
+        },
+        {
+          path:"vendors-products-details",
+          element:<VendorProductsDashboard></VendorProductsDashboard>
         }
 
       ]

@@ -29,9 +29,9 @@ const DashBoard = () => {
   // Sidebar menu config
   const menus = {
     vendor: [
-      { path: '/dashboard', label: 'Dashboard' },
-      { path: '/profile/public', label: 'Public Profile' },
-      { path: '/uploads', label: 'Uploads' },
+      { path: '/dashboard/vendors-products-details', label: 'Dashboard' },
+      { path: '/profile', label: 'Public Profile' },
+      { path: '/dashboard/vendor-upload', label: 'Uploads' },
       { path: '/track-shipping', label: 'Track Shipping' },
       { path: '/settings', label: 'Settings' },
     ],
@@ -42,12 +42,14 @@ const DashBoard = () => {
       { path: '/cart', label: 'Cart & Checkout' },
       { path: '/dashboard/track-order', label: 'Track Order' },
       { path: '/dashboard/invoice', label: 'Invoice' },
+      { path: '/dashboard/request', label: 'Request for Vendor/admin/moderator' },
+      
     ],
     admin: [
-      { path: '/dashboard/makeadmin', label: 'Make Admin' },
       { path: '/dashboard/all-users', label: 'All Users' },
-      { path: '/dashboard/all-vendors', label: 'All Vendors' },
+       { path: '/dashboard/all-vendors', label: 'All Vendors' },
       { path: '/dashboard/all-moderators', label: 'All Moderators' },
+      { path: '/dashboard/makeadmin', label: 'Pending Role Request' },
     ],
     moderator: [
       { path: '/moderator/all-vendors', label: 'All Vendors' },
@@ -82,7 +84,7 @@ const DashBoard = () => {
               alt="User Avatar"
               className="w-20 h-20 rounded-full mx-auto mb-3 border"
             />
-            <h2 className="font-semibold">{user?.displayName || "Guest User"}</h2>
+            <h2 className="font-semibold">{role ? role.toUpperCase() : "USER"}</h2>
             <p className="text-gray-500">{user?.email}</p>
           </div>
           <ul className="p-4 space-y-4">

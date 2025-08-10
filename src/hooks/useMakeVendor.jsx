@@ -25,20 +25,7 @@ const useMakeVendor = (refetch) => {
         const res = await axiosSecure.patch(`/users/vendor/${userId}`);
 
         if (res.data.modifiedCount > 0) {
-          try {
-            await axiosSecure.delete(`/role-requests/${requestId}`);
-          } catch (deleteError) {
-            console.error("Failed to delete role request:", deleteError);
-            Swal.fire({
-              icon: "warning",
-              title: "Warning",
-              text: "User made vendor, but failed to delete role request.",
-              timer: 2500,
-              showConfirmButton: false,
-              position: "top-end",
-            });
-          }
-
+    
           Swal.fire({
             position: "top-end",
             icon: "success",

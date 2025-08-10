@@ -190,7 +190,7 @@ const AdminRequest = () => {
                         } else {
                             Swal.fire(
                                 "Error!",
-                                "Could not update the user to admin.",
+                                "Could not update the user to vendor.",
                                 "error"
                             );
                         }
@@ -298,9 +298,9 @@ const AdminRequest = () => {
                                                     if (user.requestedRole === 'admin') {
                                                         handleMakeAdmin(user.userId, user._id);
                                                     } else if (user.requestedRole === 'vendor') {
-                                                        handleMakeVendor(user._id, user.requestId);
+                                                        handleMakeVendor(user.userId,user._id);
                                                     } else if (user.requestedRole === 'moderator') {
-                                                        handleMakeModerator(user._id);
+                                                        handleMakeModerator(user.userId,user._id);
                                                     }
                                                 }}
                                                 className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"

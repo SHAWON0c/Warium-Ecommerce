@@ -6,6 +6,7 @@ import useAdmin from '../../hooks/useAdmin';
 import useMakeAdmin from '../../hooks/useMakeAdmin';  // add this import
 import useMakeModerator from '../../hooks/useMakeModerator';
 import useAxiosSecure from '../../hooks/UseAxiosSecure';
+import useMakeVendor from '../../hooks/useMakeVendor';
 
 
 const AllUsers = () => {
@@ -29,6 +30,7 @@ const AllUsers = () => {
   const handleMakeAdmin = useMakeAdmin(refetch);
 
     const handleMakeModerator= useMakeModerator(refetch);
+     const handleMakeVendor= useMakeVendor(refetch);
 
   if (isLoading) return <p className="p-6">Loading users...</p>;
 
@@ -111,6 +113,19 @@ const AllUsers = () => {
                         Make Moderator
                       </button>
                     )}
+
+                      {user.role !== 'vendor' && (
+                      <button
+                        onClick={() => handleMakeVendor(user._id, user.requestId)}
+                        className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+                      >
+                        Make Vendor
+                      </button>
+                    )}
+
+
+
+
                     <button
                       onClick={() => handleSuspend(user._id)}
                       className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600"

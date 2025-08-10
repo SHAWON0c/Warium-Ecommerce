@@ -1,7 +1,8 @@
 // src/hooks/useMakeAdmin.js
 import { useCallback } from "react";
 import Swal from "sweetalert2";
-import useAxiosSecure from "./useAxiosSecure";
+import useAxiosSecure from "./UseAxiosSecure";
+
 
 
 const useMakeModerator = (refetch) => {
