@@ -6,7 +6,7 @@ const ProfileLayout = () => {
 
             <div className="w-full bg-gray-100 border">
                 <div className="h-[55px] max-w-[1320px] mx-auto flex justify-between items-center px-4">
-                    <h1 className="text-lg font-semibold">Login</h1>
+                    <h1 className="text-lg font-semibold">Login </h1>
                     <nav className="flex items-center text-md text-gray-600 space-x-1 gap-2">
                         <span>Home</span>
                         <span className="mx-1 text-lg text-red-400">››</span>
