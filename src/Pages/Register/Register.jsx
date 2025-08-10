@@ -70,8 +70,6 @@ const Register = () => {
             }
           })
 
-        // Optionally, you can update display name here using Firebase:
-        // updateProfile(loggedUser, { displayName: `${formData.firstName} ${formData.lastName}` });
 
         alert('Registration successful!');
       })
