@@ -4,13 +4,7 @@ import { TiDelete } from "react-icons/ti";
 import Swal from "sweetalert2";
 import UseAxiosSecure from "../../hooks/UseAxiosSecure";
 const CartDrawer = ({ isOpen, onClose }) => {
-  // const [cartItems, setCartItems] = useState([]);
 
-  // useEffect(() => {
-  //   fetch("/CartElement.json") // from public folder
-  //     .then((res) => res.json())
-  //     .then((data) => setCartItems(data));
-  // }, []);
   const [cart, isLoading, isError, refetch] = Usecart();
   const subTotal = cart.reduce((acc, item) => {
     const price = parseFloat(item.price.replace('$', ''));

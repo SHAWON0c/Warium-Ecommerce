@@ -70,7 +70,6 @@ const Register = () => {
             }
           })
 
-
         alert('Registration successful!');
       })
       .catch((error) => {
