@@ -1,8 +1,10 @@
 import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import UseAuth from '../hooks/useAuth';
-import useAxiosSecure from '../hooks/useAxiosSecure';
+
+import useAxiosSecure from '../hooks/UseAxiosSecure';
+import UseAuth from '../hooks/UseAuth';
+
 
 const DashBoard = () => {
   const { user } = UseAuth();
