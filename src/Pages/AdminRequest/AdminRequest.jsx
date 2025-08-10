@@ -5,7 +5,8 @@ import { FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import useAdmin from '../../hooks/useAdmin';
 import useMakeVendor from '../../hooks/useMakeVendor';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
+import useAxiosSecure from '../../hooks/UseAxiosSecure';
+
 
 const AdminRequest = () => {
     const axiosSecure = useAxiosSecure();
