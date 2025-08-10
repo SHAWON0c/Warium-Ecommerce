@@ -3,6 +3,7 @@ import { FaPlus } from "react-icons/fa";
 
 const VendorUpload = () => {
   const [images, setImages] = useState([]);
+  const [selectedColor, setSelectedColor] = useState("");
 
   const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);

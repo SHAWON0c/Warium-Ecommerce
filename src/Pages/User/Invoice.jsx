@@ -13,7 +13,7 @@ const componentRef = useRef<HTMLDivElement>('hello');
 
 
     const handleExport = () => {
-        alert('Exporting Invoice... (Integrate your export logic here)');
+        alert('Exporting Invoice... (Integrate your export logic here.)');
     };
 
     return (

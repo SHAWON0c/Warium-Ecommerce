@@ -76,7 +76,7 @@ const Login = () => {
                 //sweet alert2
 
                 Swal.fire({
-                    title: "Login Successful",
+                    title: "Login Successful ",
                     icon: "success",
                     background: "#f0f0ff",
                     color: "#333",
