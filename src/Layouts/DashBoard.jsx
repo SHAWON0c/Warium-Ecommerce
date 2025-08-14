@@ -53,7 +53,10 @@ const DashBoard = () => {
     ],
     moderator: [
       { path: '/moderator/all-vendors', label: 'All Vendors' },
-      { path: '/moderator/all-users', label: 'All Users' },
+      { path: '/moderator/all-vendors', label: 'New Seller Request' },
+      { path: '/moderator/all-users', label: 'Product & Listing Moderation' },
+      { path: '/moderator/all-users', label: 'Reports & spams ' },
+
     ]
   };
 

@@ -16,3 +16,27 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+
+:root {
+  --card-radius: 8px;
+}
+
+/* small utility for pixel-perfect thin border */
+.border-thin {
+  border-width: 1px;
+}
+
+/* subtle box shadow like screenshot */
+.product-shadow {
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.06);
+}
+
+/* countdown small boxes */
+.count-box {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 6px;
+  padding: 12px 14px;
+  min-width: 64px;
+}

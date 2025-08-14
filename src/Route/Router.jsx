@@ -24,6 +24,8 @@ import Allusers from "../DashBoard/AdminDashboard/Allusers";
 import AllVendors from "../DashBoard/AdminDashboard/AllVendors";
 import Allmoderators from "../DashBoard/AdminDashboard/Allmoderators";
 import VendorProductsDashboard from "../DashBoard/VendorDashboard/VendorProductsDashboard";
+import ProductDetails from "../Pages/ProductDetails/ProductDetails";
+import ProductDetailslayout from "../Layouts/ProductDetailslayout";
 
 export const router = createBrowserRouter([
   {
@@ -61,7 +63,19 @@ export const router = createBrowserRouter([
         {
           path: 'secrate',
           element: <PrivateRoute><Secrate></Secrate></PrivateRoute>
+        },
+        {
+          path:'products',
+          element: <ProductDetailslayout></ProductDetailslayout>,
+          children: [
+            {
+              path:'details',
+              element: <ProductDetails></ProductDetails>
+            }
+          ]
+
         }
+       
       ]
 
   },
@@ -123,7 +137,8 @@ export const router = createBrowserRouter([
         {
           path:"vendors-products-details",
           element:<VendorProductsDashboard></VendorProductsDashboard>
-        }
+        },
+      
 
       ]
   }
