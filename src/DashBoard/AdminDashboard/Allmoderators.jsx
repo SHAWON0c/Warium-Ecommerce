@@ -4,7 +4,8 @@ import { useQuery } from '@tanstack/react-query';
 import { FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import useAdmin from '../../hooks/useAdmin';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
+import useAxiosSecure from '../../hooks/UseAxiosSecure';
+
 
 const Allmoderators = () => {
   const axiosSecure = useAxiosSecure();

@@ -4,7 +4,7 @@ import { Progress } from "@material-tailwind/react";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faEye, faRefresh, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import '../CSS/sale.css'
-
+import { Link } from "react-router-dom";
 //Deal of the day 
 import shampo from '../assets/images/products/shampoo.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -64,6 +64,13 @@ const EcommerceLayout = () => {
             .then((data) => setProducts(data))
 
     }, [])
+
+
+    const handleNavigate = (product) => {
+        // Save product to sessionStorage to survive refresh
+        sessionStorage.setItem("selectedProduct", JSON.stringify(product));
+        navigate("/products/details", { state: { product } });
+    };
 
 
 
@@ -340,81 +347,84 @@ const EcommerceLayout = () => {
 
                 {/* new product section  */}
 
-                <div className="col-span-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {products.map((product) => (
-                        <div
-                            key={product.id}
 
-                            className="border rounded-xl p-4 relative hover:shadow-lg transition bg-white overflow-hidden group"
+                <div className="col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    {products.map((product) => (
+                        <Link
+                            key={product._id}
+                            onClick={() => handleNavigate(product)}
+                            className="border rounded-3xl w-[auto] h-[350px] p-4 relative hover:shadow-lg transition bg-white overflow-hidden group"
                         >
-                            {/* SALE Label - Fixed Position */}
-                            {product.label && product.label.toLowerCase() === 'sale' && (
-                                <div className="absolute top-0 left-[-30px] rotate-[-45deg] bg-black text-white uppercase text-[11px] py-[5px] px-[40px] font-bold shadow-md z-20">
-                                    {product.label}
+                            {/* SALE Label */}
+                            {product.labelType && product.labelType.toLowerCase() === "sale" && (
+                                <div className="absolute top-0 left-[-30px] rotate-[-40deg] bg-black text-white uppercase text-[12px] py-[5px] px-[40px] font-bold shadow-md z-20">
+                                    {product.labelType}
                                 </div>
                             )}
 
                             {/* Other Labels */}
-                            {product.label && product.label.toLowerCase() !== 'sale' && (
+                            {product.labelType && product.labelType.toLowerCase() !== "sale" && (
                                 <span
-                                    className={`absolute top-2 left-2 text-white text-xs px-2 py-1 rounded ${product.labelColor} z-20`}
+                                    className={`absolute top-2 left-2 text-white text-xs px-2 py-1 rounded ${product.labelColor || "bg-blue-500"
+                                        } z-20`}
                                 >
-                                    {product.label}
+                                    {product.labelType}
                                 </span>
                             )}
 
-                            {/* Product Image with Hover Effect */}
+                            {/* Product Image */}
                             <div className="relative w-full h-40 mb-4 overflow-hidden">
                                 <img
-                                    src={product.image}
-                                    alt={product.title}
+                                    src={product.images[0][0]}
+                                    alt={product.productName}
                                     className="w-full h-full object-contain transition-opacity duration-500 ease-in-out group-hover:opacity-0"
                                 />
                                 <img
-                                    src={product.hoverImage}
-                                    alt={product.title}
+                                    src={product.images[0][1] || product.images[0][0]}
+                                    alt={product.productName}
                                     className="w-full h-full object-contain absolute top-0 left-0 opacity-0 group-hover:opacity-100 transform scale-100 group-hover:scale-[1.19] transition-all duration-500 ease-in-out"
                                 />
-
-                                {/* Action Icons Slide In on Hover */}
-                                <div className="absolute top-2 right-2 flex flex-col space-y-2 transform translate-x-8 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 z-30">
-                                    <button className="w-7 h-7 border border-gray-300 flex items-center justify-center bg-white rounded shadow hover:bg-black  hover:text-white">
-                                        <FontAwesomeIcon icon={faHeart} className="text-sm" />
-                                    </button>
-                                    <button className="w-7 h-7 flex items-center justify-center bg-white rounded shadow  hover:bg-black  hover:text-white">
-                                        <FontAwesomeIcon icon={faEye} className="text-sm" />
-                                    </button>
-                                    <button className="w-7 h-7 flex items-center justify-center bg-white rounded shadow  hover:bg-black  hover:text-white">
-                                        <FontAwesomeIcon icon={faRefresh} className="text-sm" />
-                                    </button>
-                                    <button onClick={() => handleAddToCart(product)} className="w-7 h-7 flex items-center justify-center bg-white rounded shadow  hover:bg-black  hover:text-white ">
-                                        <FontAwesomeIcon icon={faShoppingCart} className="text-sm" />
-                                    </button>
-                                </div>
-
                             </div>
 
-                            {/* Product Category */}
-                            <div className="text-red-500 text-xs uppercase mb-1">{product.category}</div>
+                            <div className="absolute top-2 right-2 flex flex-col space-y-2 transform translate-x-8 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 z-30">
+                                <button className="w-7 h-7 border border-gray-300 flex items-center justify-center bg-white rounded shadow hover:bg-black  hover:text-white">
+                                    <FontAwesomeIcon icon={faHeart} className="text-sm" />
+                                </button>
+                                <button className="w-7 h-7 flex items-center justify-center bg-white rounded shadow  hover:bg-black  hover:text-white">
+                                    <FontAwesomeIcon icon={faEye} className="text-sm" />
+                                </button>
+                                <button className="w-7 h-7 flex items-center justify-center bg-white rounded shadow  hover:bg-black  hover:text-white">
+                                    <FontAwesomeIcon icon={faRefresh} className="text-sm" />
+                                </button>
+                                <button className="w-7 h-7 flex items-center justify-center bg-white rounded shadow  hover:bg-black  hover:text-white ">
+                                    <FontAwesomeIcon icon={faShoppingCart} className="text-sm" />
+                                </button>
+                            </div>
 
-                            {/* Product Title */}
-                            <div className="text-base font-semibold mb-1 text-gray-500">{product.title}</div>
-
-                            {/* Rating */}
+                            {/* Product Info */}
+                            <div className="text-red-400 text-xs uppercase mb-1 font-bold">{product.category}</div>
+                            <div className="text-base font-base mb-1 text-gray-500">{product.productName}</div>
                             <div className="flex items-center mb-2">
                                 {Array.from({ length: 5 }, (_, i) => (
-                                    <span key={i} className={`text-yellow-400 ${i < product.rating ? '' : 'opacity-30'}`}>★</span>
+                                    <span
+                                        key={i}
+                                        className={`text-yellow-400 ${i < (product.rating || 0) ? "" : "opacity-90"}`}
+                                    >
+                                        ★
+                                    </span>
                                 ))}
                             </div>
-
-                            {/* Price */}
                             <div className="text-sm">
-                                <span className="font-bold mr-2">{product.price}</span>
-                                <span className="line-through text-gray-400">{product.oldPrice}</span>
+                                <span className="font-bold mr-2">${product.price}.00</span>
+                                {product.oldPrice && <span className="line-through text-gray-400">${product.oldPrice}.00</span>}
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
+
+
+
+
 
 
 
