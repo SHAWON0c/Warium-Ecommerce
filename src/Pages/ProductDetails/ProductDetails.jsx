@@ -28,6 +28,25 @@ const ProductPage = () => {
   const [mainImage, setMainImage] = useState(product?.images?.[0]?.[0] || "");
   const [activeTab, setActiveTab] = useState("detail");
 
+    const [reviews, setReviews] = useState([
+    { id: 1, name: "Rahim", text: "Great product! Worth every penny." },
+    { id: 2, name: "Karim", text: "Good quality, but delivery was a bit late." },
+    { id: 3, name: "Sadia", text: "Excellent build and performance." },
+  ]);
+
+  const [newReview, setNewReview] = useState("");
+
+  const handleAddReview = () => {
+    if (newReview.trim() === "") return;
+    const newEntry = {
+      id: reviews.length + 1,
+      name: "Anonymous", // later you can link with logged-in user
+      text: newReview,
+    };
+    setReviews([newEntry, ...reviews]); // add new review at top
+    setNewReview("");
+  };
+
   // Countdown example
   const [countdown, setCountdown] = useState({
     days: 365,
@@ -252,26 +271,73 @@ const ProductPage = () => {
 
         {/* Tabs */}
 
-        <div className="lg:col-span-12 mt-10">
-          <div className="tabs tabs-boxed bg-transparent p-0">
-            <button
-              className={`tab px-6 py-3 ${activeTab === "detail" ? "tab-active" : ""}`}
-              onClick={() => setActiveTab("detail")}
-            >
-              Detail
-            </button>
-            <button
-              className={`tab px-6 py-3 ${activeTab === "moreInfo" ? "tab-active" : ""}`}
-              onClick={() => setActiveTab("moreInfo")}
-            >
-              More Information
-            </button>
-          </div>
+<div className="lg:col-span-12 mt-10">
+      {/* Tabs */}
+      <div className="tabs tabs-boxed bg-transparent p-0">
+        <button
+          className={`tab px-6 py-3 ${activeTab === "detail" ? "tab-active" : ""}`}
+          onClick={() => setActiveTab("detail")}
+        >
+          Detail
+        </button>
+        <button
+          className={`tab px-6 py-3 ${activeTab === "moreInfo" ? "tab-active" : ""}`}
+          onClick={() => setActiveTab("moreInfo")}
+        >
+          More Information
+        </button>
+        <button
+          className={`tab px-6 py-3 ${activeTab === "reviews" ? "tab-active" : ""}`}
+          onClick={() => setActiveTab("reviews")}
+        >
+          Reviews
+        </button>
+      </div>
 
-          <div className="mt-4 bg-white border rounded p-6 text-gray-600 leading-7">
-            {activeTab === "detail" ? product.shortDesc : product.fullDetail}
+      {/* Tab Content */}
+      <div className="mt-4 bg-white border rounded p-6 text-gray-600 leading-7">
+        {activeTab === "detail" && <p>{product.shortDesc}</p>}
+        {activeTab === "moreInfo" && <p>{product.fullDetail}</p>}
+
+        {activeTab === "reviews" && (
+          <div>
+            {/* Add Review Box */}
+            <div className="mb-6">
+              <textarea
+                className="w-full border rounded-lg p-3 focus:outline-none focus:ring focus:ring-purple-300"
+                rows="3"
+                placeholder="Write your review..."
+                value={newReview}
+                onChange={(e) => setNewReview(e.target.value)}
+              />
+              <button
+                onClick={handleAddReview}
+                className="mt-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+              >
+                Submit Review
+              </button>
+            </div>
+
+            {/* Review List */}
+            <div className="space-y-4">
+              {reviews.length > 0 ? (
+                reviews.map((review) => (
+                  <div
+                    key={review.id}
+                    className="border border-gray-200 rounded-lg p-4 shadow-sm"
+                  >
+                    <p className="font-semibold text-gray-800">{review.name}</p>
+                    <p className="text-gray-600 mt-1">{review.text}</p>
+                  </div>
+                ))
+              ) : (
+                <p className="text-gray-500">No reviews yet. Be the first one!</p>
+              )}
+            </div>
           </div>
-        </div>
+        )}
+      </div>
+    </div>
 
 
       </div>
