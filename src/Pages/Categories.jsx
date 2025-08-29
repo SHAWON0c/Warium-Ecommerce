@@ -28,10 +28,10 @@ const Categories = () => {
   };
 
   return (
-    <div className="relative w-full max-w-full mx-auto px-4">
+    <div className="relative w-full max-w-full mx-auto px-0 mt-4">
       <button
         onClick={() => scroll("left")}
-        className="scroll-btn left"
+        className="scroll-btn left "
         aria-label="Scroll Left"
       >
         <FaChevronLeft />

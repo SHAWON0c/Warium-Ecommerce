@@ -59,7 +59,7 @@ const ProductDetailslayout = () => {
     // //(categories);
 
     useEffect(() => {
-        fetch("http://localhost:5000/products")
+        fetch("https://warium-ecommerce-server-api.onrender.com/products")
             .then(res => res.json())
             .then((data) => setProducts(data))
 
@@ -184,7 +184,7 @@ const ProductDetailslayout = () => {
         <div className="max-w-[80%] mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6  bg-white min-h-screen font-sans mt-10">
                 {/* Sidebar */}
-                <div className="sticky top-2 h-fit">
+                <div className=" hidden lg:block lg:sticky top-2 h-fit">
                     <div className="p-4 border rounded-md bg-white">
                         <h3 className="font-semibold mb-4 text-gray-800 uppercase text-lg tracking-wide">Category</h3>
                         <ul className="space-y-3">

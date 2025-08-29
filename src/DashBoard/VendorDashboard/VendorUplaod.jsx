@@ -31,7 +31,7 @@ const VendorUpload = () => {
   const [price, setPrice] = useState("");
   const [oldPrice, setOldPrice] = useState("");
   const [discount, setDiscount] = useState("");
-  const [labelType, setLabelType] = useState("New");
+  const [labelType, setLabelType] = useState("");
   const [quantity, setQuantity] = useState("");
   const [fullDetail, setFullDetail] = useState("");
   const [tags, setTags] = useState("");
@@ -248,10 +248,15 @@ const VendorUpload = () => {
                   onChange={(e) => setCategory(e.target.value)}
                   className="w-full border rounded-md px-3 py-2"
                 >
-                  <option>shirts</option>
                   <option>JACKETS</option>
-                  <option>Phone</option>
-                  <option>Tablet</option>
+                  <option>T-SHIRT</option>
+                  <option>SPORTS</option>
+                  <option>JEWELLERY</option>
+                  <option>PERFUME</option>
+                  <option>COSMETICS</option>
+                  <option>PARTY WEAR</option>
+                   <option>WATCH</option>
+
                 </select>
               </div>
             </div>
@@ -374,7 +379,7 @@ const VendorUpload = () => {
                 className="w-full border rounded-md px-3 py-2"
               >
                 <option>New</option>
-                <option>Sale</option>
+                <option>SALE</option>
               </select>
             </div>
 
