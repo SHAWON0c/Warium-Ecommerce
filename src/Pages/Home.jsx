@@ -16,7 +16,7 @@ const Home = () => {
     return (
         <div>
             {/* Full-width on mobile, 80% centered on desktop */}
-            <div className="w-full lg:max-w-[80%] lg:mx-auto">
+            <div className="w-full bg-white lg:max-w-[90%] lg:mx-auto ">
                 <Herosection />
             </div>
 

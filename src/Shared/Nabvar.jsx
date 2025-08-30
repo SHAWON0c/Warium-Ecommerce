@@ -12,7 +12,7 @@ import { AuthContext } from '../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { useNavigate } from "react-router";
 import Usecart from '../hooks/Usecart';
-
+import { FiSearch } from "react-icons/fi";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [cart] = Usecart();
@@ -66,8 +66,8 @@ const Navbar = () => {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="flex items-center space-x-2 p-2"
           >
-            <FaBars className="w-5 h-5 cursor-pointer" />
-            <h1 className="text-2xl font-bold">Warium</h1>
+            <FaBars className="w-5 h-5 cursor-pointer text-black" />
+            <h1 className="text-2xl font-bold text-black">Warium</h1>
           </button>
 
 
@@ -79,20 +79,25 @@ const Navbar = () => {
             </div>
           )}
         </div>
-        <h1 className="text-2xl font-bold text-left hidden lg:block">Warium</h1>
+        <h1 className="text-2xl font-bold text-left hidden lg:block text-black">Warium</h1>
 
 
         {/* Search Box (hidden on mobile) */}
-        <div className="flex-1 mx-6 hidden md:block">
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Enter your product name..."
-              className="w-full border border-gray-400 rounded-full px-4 py-2 outline-none"
-            />
-            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500">[icon ashbe] search</span>
-          </div>
-        </div>
+       <div className="flex-1 mx-6 hidden md:block">
+      <div className="relative">
+        <input
+          type="text"
+          placeholder="Enter your product name..."
+          className="w-full border border-gray-400 rounded-full px-4 py-2 outline-none
+                     text-gray-800 placeholder-gray-500
+                     dark:border-gray-600 dark:text-gray-200 dark:placeholder-gray-400 bg-white"
+        />
+        <span className="absolute right-4 top-1/2 -translate-y-1/2 
+                         text-gray-500 dark:text-gray-300">
+          <FiSearch className='text-black' />
+        </span>
+      </div>
+    </div>
 
         {/* Icons (always visible) */}
         <div className="flex space-x-4 text-gray-700">

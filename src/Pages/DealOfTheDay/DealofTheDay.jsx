@@ -63,9 +63,9 @@ const DealOfTheDay = () => {
                         ADD TO CART
                     </button>
 
-                    <div className="space-y-4">
-                        <div className="flex flex-col sm:flex-row justify-between text-sm font-semibold mt-2 gap-2 sm:gap-0">
-                            <span>ALREADY SOLD: <span className="text-black">{currentDeal.sold}</span></span>
+                    <div className="space-y-4  text-black">
+                        <div className="flex flex-col sm:flex-row justify-between text-sm font-semibold mt-2 gap-2 sm:gap-0 text-black">
+                            <span className="text-black">ALREADY SOLD: <span className="text-black">{currentDeal.sold}</span></span>
                             <span>AVAILABLE: <span className="text-black">{currentDeal.available}</span></span>
                         </div>
 

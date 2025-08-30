@@ -12,7 +12,7 @@ const ProductsSection = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://warium-ecommerce-server-api.onrender.com/products")
+    fetch("http://localhost:5000/products")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);

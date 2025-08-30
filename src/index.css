@@ -6,6 +6,12 @@
 .scrollbar-thin-custom::-webkit-scrollbar {
   height: 6px;
 }
+/* index.css or App.css */
+body {
+  background-color: white;
+  background-attachment: fixed;
+   /* This makes it "fixed" during scroll */
+}
 
 
 /* global.css */
