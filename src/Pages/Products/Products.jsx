@@ -12,7 +12,7 @@ const ProductsSection = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:5000/products")
+    fetch("http://192.168.0.235:5000/products")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
@@ -63,7 +63,7 @@ const ProductsSection = () => {
     <div className="px-4 sm:px-6 md:px-8 lg:px-16 py-8">
       <h1 className="font-semibold text-gray-800 mb-8 text-xl sm:text-2xl md:text-3xl">Products</h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+      <div className="grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
         {isLoading
           ? Array.from({ length: productsPerPage }).map((_, i) => <SkeletonCard key={i} />)
           : randomProducts.map((product) => (
@@ -147,22 +147,22 @@ const ProductsSection = () => {
           ))}
       </div>
 
-      {/* Pagination */}
-      <div className="flex flex-wrap justify-center mt-10 gap-3">
-        {Array.from({ length: totalPages }, (_, i) => (
-          <button
-            key={i}
-            onClick={() => setCurrentPage(i + 1)}
-            className={`px-4 py-2 rounded-full font-semibold transition ${currentPage === i + 1
-              ? "bg-red-500 text-white shadow-lg"
-              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-              }`}
-          >
-            {i + 1}
-          </button>
-        ))}
-      </div>
-    </div>
+      {/* Pagination */ }
+  <div className="flex flex-wrap justify-center mt-10 gap-3">
+    {Array.from({ length: totalPages }, (_, i) => (
+      <button
+        key={i}
+        onClick={() => setCurrentPage(i + 1)}
+        className={`px-4 py-2 rounded-full font-semibold transition ${currentPage === i + 1
+          ? "bg-red-500 text-white shadow-lg"
+          : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+          }`}
+      >
+        {i + 1}
+      </button>
+    ))}
+  </div>
+    </div >
 
   );
 };

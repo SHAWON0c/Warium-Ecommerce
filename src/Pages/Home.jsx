@@ -9,13 +9,15 @@ import TestimonialServices from './TestimonialServices';
 import BlogSection from './BlogSection';
 import BrandDirectory from './BrandDirectory';
 import Footer from '../Shared/Footer';
-import CartDrawer from './User/Cart';
+import CartDrawer from './User/CartCheckout';
 import EcommerceLayout from '../Layouts/EcommerceLayout';
 
 const Home = () => {
     return (
         <div>
             {/* Full-width on mobile, 80% centered on desktop */}
+
+
             <div className="w-full bg-white lg:max-w-[90%] lg:mx-auto ">
                 <Herosection />
             </div>

@@ -12,7 +12,7 @@ import ProfileLayout from "../Layouts/ProfileLayout";
 import History from "../Pages/User/History";
 import Invoice from "../Pages/User/Invoice";
 import Wishlist from "../Pages/User/Wishlist";
-import Cart from "../Pages/User/Cart";
+import Cart from "../Pages/User/CartCheckout";
 import PrivateRoute from "./PrivateRoute";
 import Secrate from "../Shared/Secrate";
 import Redirect from "./Redirect";
@@ -26,6 +26,11 @@ import Allmoderators from "../DashBoard/AdminDashboard/Allmoderators";
 import VendorProductsDashboard from "../DashBoard/VendorDashboard/VendorProductsDashboard";
 import ProductDetails from "../Pages/ProductDetails/ProductDetails";
 import ProductDetailslayout from "../Layouts/ProductDetailslayout";
+import VendorProducts from "../DashBoard/VendorDashboard/Vendor_Products";
+import VendorTrackShipping from "../DashBoard/VendorDashboard/VendorTrackShipping";
+import VendorSetting from "../DashBoard/VendorDashboard/VendorSetting";
+import PublicProfileSection from "../DashBoard/VendorDashboard/PublicProfileSection";
+import CartCheckout from "../Pages/User/CartCheckout";
 
 export const router = createBrowserRouter([
   {
@@ -46,11 +51,6 @@ export const router = createBrowserRouter([
         {
           path: 'wishlist',
           element: <Wishlist></Wishlist>
-        },
-        {
-          path: 'cart',
-          element: <Cart></Cart>
-
         },
         {
           path: 'login',
@@ -110,8 +110,26 @@ export const router = createBrowserRouter([
           element: <Allmoderators></Allmoderators>
         },
         {
-          path: 'vendor-upload',
+          path: 'vendor-upload/:id?',
           element: <VendorUplaod></VendorUplaod>
+        },
+        {
+          path:'vendor-products',
+          element:<VendorProducts></VendorProducts>
+
+        },
+         {
+          path:'vendor-track-shipping',
+          element:<VendorTrackShipping></VendorTrackShipping>
+
+        },
+          {
+          path:'vendor-setting',
+          element:<VendorSetting></VendorSetting>
+        },
+        {
+          path: 'vendor-profile',
+          element:<PublicProfileSection></PublicProfileSection>
         },
         {
           path: 'user-profile',
@@ -120,11 +138,6 @@ export const router = createBrowserRouter([
         {
           path: 'wishlist',
           element: <Wishlist></Wishlist>
-        },
-        {
-          path: 'cart',
-          element: <Cart></Cart>
-
         },
         {
           path:'invoice',

@@ -103,32 +103,7 @@ const EcommerceLayout = () => {
         setOpenIndex(openIndex === index ? null : index);
     };
 
-    const handleAddToCart = product => {
-        if (user && user.email) {
-            const cartItem = {
-                ProductMainID: product._id,
-                email: user.email,
-                title: product.title,
-                price: product.price,
-                image: product.image
-            };
-            axiosSecure.post('/carts', cartItem)
-                .then(res => refetch())
-                .catch(err => console.error('Error adding to cart:', err));
-        } else {
-            Swal.fire({
-                title: "Login Required?",
-                text: "You need to login to add to cart",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Login"
-            }).then(result => {
-                if (result.isConfirmed) navigate('/login');
-            });
-        }
-    };
+
 
     const renderStars = (rating) => {
         const fullStars = Math.floor(rating);

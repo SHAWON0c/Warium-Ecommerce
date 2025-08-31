@@ -26,7 +26,7 @@ const ProductPage = () => {
   // Get product from state or sessionStorage
   const [product, setProduct] = useState(location.state?.product || null);
 
-  // console.log(product);
+  // console.log(product.quantity);
 
   // Qty, size, color
   const [qty, setQty] = useState(1);
@@ -120,6 +120,20 @@ const ProductPage = () => {
     setNewReview("");
   };
 
+  const handleIncrease = () => {
+    if (qty < product.quantity) {
+      setQty(qty + 1);
+    } else {
+      Swal.fire({
+        title: "Stock limit reached!",
+        text: `You can only purchase up to ${product.quantity} items.`,
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    }
+  };
+
+
   // Countdown example
   const [countdown, setCountdown] = useState({
     days: 365,
@@ -166,9 +180,10 @@ const ProductPage = () => {
 
   if (!product) return <div>Loading...</div>;
 
-  const stockLeft = 29;
+  const stockLeft = product.quantity;
   const stockTotal = 100;
   const stockPercent = Math.max(6, Math.round(((stockTotal - stockLeft) / stockTotal) * 100));
+  const width=100;
 
   return (
     <div className="w-full mx-auto font-inter px-4 py-5 lg:px-6 lg:py-10 -mt-10 lg:-mt-10">
@@ -231,13 +246,14 @@ const ProductPage = () => {
 
                 <div className="w-full bg-gray-200 h-2 rounded mt-3">
                   <div
-                    className="h-2 rounded"
+                    className="h-2 rounded transition-all duration-500"
                     style={{
                       width: `${stockPercent}%`,
-                      background: "linear-gradient(90deg, #111827 0%, #a78bfa 100%)",
+                      background: "linear-gradient(90deg, #ef4444 0%, #f59e0b 100%)",
                     }}
                   />
                 </div>
+
 
                 <div className="grid grid-cols-4 gap-4 mt-3 text-center text-black">
                   {["Days", "Hours", "Min", "Sec"].map((label, i) => (
@@ -317,7 +333,7 @@ const ProductPage = () => {
                       <BiMinus size={16} className="sm:size-18" />
                     </button>
                     <div className="px-3 sm:px-6 py-1 sm:py-2 text-xs sm:text-sm">{qty}</div>
-                    <button onClick={() => setQty((q) => q + 1)} className="hover:bg-gray-50">
+                    <button onClick={handleIncrease} className="hover:bg-gray-50">
                       <BiPlus size={16} className="sm:size-18 text-black" />
                     </button>
                   </div>

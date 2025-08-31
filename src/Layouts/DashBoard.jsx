@@ -1,110 +1,134 @@
-import React from 'react';
-import { Outlet, Link } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
+import React from "react";
+import { Outlet, Link, useLocation } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import {
+  LayoutDashboard,
+  User,
+  Upload,
+  Truck,
+  Settings,
+  Package,
+  Heart,
+  ShoppingCart,
+  FileText,
+  Users,
+  Shield,
+  BarChart3,
+  AlertTriangle,
+} from "lucide-react";
 
-import useAxiosSecure from '../hooks/UseAxiosSecure';
-import UseAuth from '../hooks/UseAuth';
-
+import useAxiosSecure from "../hooks/UseAxiosSecure";
+import UseAuth from "../hooks/UseAuth";
 
 const DashBoard = () => {
   const { user } = UseAuth();
   const axiosSecure = useAxiosSecure();
+  const location = useLocation();
 
-  // Fetch user info from DB
+  // Fetch user info
   const { data: userInfo, isLoading: userLoading } = useQuery({
-    queryKey: ['userInfo', user?.email],
+    queryKey: ["userInfo", user?.email],
     enabled: !!user?.email,
     queryFn: async () => {
       const res = await axiosSecure.get(`/users/${user.email}`);
       return res.data;
-    }
+    },
   });
 
   if (userLoading) {
     return <div className="p-6 text-center">Loading dashboard...</div>;
   }
 
-  const role = userInfo?.role || null;
+  const role = userInfo?.role || "user";
 
-  // Sidebar menu config
+  // Menu configuration with icons
   const menus = {
     vendor: [
-      { path: '/dashboard/vendors-products-details', label: 'Dashboard' },
-      { path: '/profile', label: 'Public Profile' },
-      { path: '/dashboard/vendor-upload', label: 'Uploads' },
-      { path: '/track-shipping', label: 'Track Shipping' },
-      { path: '/settings', label: 'Settings' },
+      { path: "/dashboard/vendors-products-details", label: "Dashboard", icon: LayoutDashboard },
+      { path: "/dashboard/vendor-profile", label: "Public Profile", icon: User },
+      { path: "/dashboard/vendor-upload", label: "Uploads", icon: Upload },
+      { path: "vendor-track-shipping", label: "Track Shipping", icon: Truck },
+      { path: "/dashboard/vendor-products", label: "Products", icon: Package },
+      { path: "/dashboard/vendor-setting", label: "Settings", icon: Settings },
     ],
     user: [
-      { path: '/dashboard/user-profile', label: 'User Profile' },
-      { path: '/dashboard/history', label: 'History' },
-      { path: '/wishlist', label: 'Wishlist' },
-      { path: '/cart', label: 'Cart & Checkout' },
-      { path: '/dashboard/track-order', label: 'Track Order' },
-      { path: '/dashboard/invoice', label: 'Invoice' },
-      { path: '/dashboard/request', label: 'Request for Vendor/admin/moderator' },
-      
+      { path: "/dashboard/user-profile", label: "User Profile", icon: User },
+      { path: "/dashboard/history", label: "History", icon: FileText },
+      { path: "/wishlist", label: "Wishlist", icon: Heart },
+      { path: "/dashboard/cart", label: "Cart & Checkout", icon: ShoppingCart },
+      { path: "/dashboard/track-order", label: "Track Order", icon: Truck },
+      { path: "/dashboard/invoice", label: "Invoice", icon: FileText },
+      { path: "/dashboard/request", label: "Role Request", icon: Shield },
     ],
     admin: [
-      { path: '/dashboard/all-users', label: 'All Users' },
-       { path: '/dashboard/all-vendors', label: 'All Vendors' },
-      { path: '/dashboard/all-moderators', label: 'All Moderators' },
-      { path: '/dashboard/makeadmin', label: 'Pending Role Request' },
+      { path: "/dashboard/all-users", label: "All Users", icon: Users },
+      { path: "/dashboard/all-vendors", label: "All Vendors", icon: Package },
+      { path: "/dashboard/all-moderators", label: "All Moderators", icon: Shield },
+      { path: "/dashboard/makeadmin", label: "Pending Requests", icon: AlertTriangle },
     ],
     moderator: [
-      { path: '/moderator/all-vendors', label: 'All Vendors' },
-      { path: '/moderator/all-vendors', label: 'New Seller Request' },
-      { path: '/moderator/all-users', label: 'Product & Listing Moderation' },
-      { path: '/moderator/all-users', label: 'Reports & spams ' },
-
-    ]
+      { path: "/moderator/all-vendors", label: "All Vendors", icon: Package },
+      { path: "/moderator/new-vendor-requests", label: "New Seller Requests", icon: Upload },
+      { path: "/moderator/moderation", label: "Product Moderation", icon: BarChart3 },
+      { path: "/moderator/reports", label: "Reports & Spams", icon: AlertTriangle },
+    ],
   };
 
-  // Fallback to user menu if no role
   const currentMenu = menus[role] || menus.user;
 
   return (
-    <div>
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="w-full bg-gray-100 border">
-        <div className="h-[55px] max-w-[1320px] mx-auto flex justify-between items-center px-4">
-          <h1 className="text-lg font-semibold">Dashboard</h1>
-          <nav className="flex items-center text-md text-gray-600 space-x-1 gap-2">
+      <header className="bg-white shadow-sm border-b sticky top-0 z-40">
+        <div className="h-[60px] max-w-[1320px] mx-auto flex justify-between items-center px-6">
+          <h1 className="text-xl font-bold text-gray-800">Warium Dashboard</h1>
+          <nav className="flex items-center gap-2 text-sm text-gray-500">
             <span>Home</span>
-            <span className="mx-1 text-lg text-red-400">››</span>
-            <span className="text-red-400">{role ? role.toUpperCase() : "USER"}</span>
+            <span className="mx-1 text-gray-400">›</span>
+            <span className="text-blue-600 font-medium">{role.toUpperCase()}</span>
           </nav>
         </div>
-      </div>
+      </header>
 
       {/* Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-[70%] mx-auto mt-10 mb-10">
+      <div className="flex max-w-[80%] mx-auto mt-6 gap-6 px-4">
         {/* Sidebar */}
-        <div className="col-span-1 border rounded-md bg-white h-auto sticky top-4">
+        <aside className="hidden md:block w-64 bg-white border rounded-xl shadow-sm sticky top-[80px] h-fit">
           <div className="text-center py-6 border-b">
             <img
               src={user?.photoURL || "/default-avatar.png"}
               alt="User Avatar"
-              className="w-20 h-20 rounded-full mx-auto mb-3 border"
+              className="w-20 h-20 rounded-full mx-auto mb-3 border shadow-sm"
             />
-            <h2 className="font-semibold">{role ? role.toUpperCase() : "USER"}</h2>
-            <p className="text-gray-500">{user?.email}</p>
+            <h2 className="font-semibold text-gray-800">{user?.displayName || role.toUpperCase()}</h2>
+            <p className="text-gray-500 text-sm">{user?.email}</p>
           </div>
-          <ul className="p-4 space-y-4">
-            {currentMenu.map((item, index) => (
-              <li key={index} className="border-b pb-2 cursor-pointer hover:text-red-400">
-                <Link to={item.path} className="block hover:text-red-500">
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+          <ul className="p-4 space-y-2">
+            {currentMenu.map((item, index) => {
+              const isActive = location.pathname === item.path;
+              return (
+                <li key={index}>
+                  <Link
+                    to={item.path}
+                    className={`flex items-center gap-3 px-4 py-2 rounded-md transition ${
+                      isActive
+                        ? "bg-blue-50 text-blue-600 font-medium"
+                        : "text-gray-600 hover:bg-gray-50 hover:text-blue-500"
+                    }`}
+                  >
+                    <item.icon className="w-5 h-5" />
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
-        </div>
+        </aside>
 
         {/* Content */}
-        <div className="col-span-3 border rounded-md bg-white p-6">
+        <main className="flex-1 bg-white border rounded-xl shadow-sm p-6">
           <Outlet />
-        </div>
+        </main>
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ import men from '../assets/images/banner/mens-banner.jpg'
 import women from '../assets/images/banner/womens-banner.jpg'
 import '../CSS/style.css'
 import { NavLink } from "react-router";
-import CartDrawer from '../Pages/User/Cart';
+import CartDrawer from '../Pages/User/CartCheckout';
 import { AuthContext } from '../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { useNavigate } from "react-router";
