@@ -27,7 +27,7 @@ body {
 
 
 :root {
-  --card-radius: 8px;
+  --card-radius: 7px;
 }
 
 /* small utility for pixel-perfect thin border */
