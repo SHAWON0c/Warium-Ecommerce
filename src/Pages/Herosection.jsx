@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import banner1 from '../assets/images/banner/banner-1.jpg';
+import banner1 from '../assets/images/banner/banner-5.jpg';
 import banner2 from '../assets/images/banner/6.jpg';
 import banner3 from '../assets/images/banner/banner-4.jpg';
 import "../CSS/Categories.css"; // Custom scrollbar & buttons CSS
@@ -9,7 +9,7 @@ const Herosection = () => {
   const sliderRef = useRef(null);
   const banners = [banner1, banner2, banner3];
   const bannerTexts = [
-    { title: "Trending Item", subtitle1: "Women's latest fashion sale", subtitle2: "Starting at $20.00" },
+    { title: "Trending Item", subtitle1: "mens latest fashion sale", subtitle2: "Starting at $20.00" },
     { title: "Trending Accessories", subtitle1: "Modern sunglasses", subtitle2: "Starting at $15.00" },
     { title: "Sale Offer", subtitle1: "New fashion summer sale", subtitle2: "Starting at $29.99" },
   ];

@@ -26,6 +26,9 @@ import perfumeIcon from "../assets/images/icons/perfume.svg";
 import cosmeticsIcon from "../assets/images/icons/cosmetics.svg";
 import glassesIcon from "../assets/images/icons/glasses.svg";
 import bagIcon from "../assets/images/icons/bag.svg";
+import TshirtHome from "../AIfeatures/pages/TshirtHome";
+import CanvasModel from "../AIfeatures/canvas";
+import TshirtCustomizer from "../AIfeatures/pages/TshirtCustomizer";
 
 const EcommerceLayout = () => {
     const [categories, setCategories] = useState([]);
@@ -41,45 +44,59 @@ const EcommerceLayout = () => {
     // Static categories with imported icons
     useEffect(() => {
         const staticCategories = [
-            { name: "Clothes", icon: dressIcon, subItems: [
-                { name: "Shirt", count: 300 },
-                { name: "Shorts & Jeans", count: 120 },
-                { name: "Jacket", count: 80 },
-                { name: "Dress & Frock", count: 80 }
-            ] },
-            { name: "Footwear", icon: shoesIcon, subItems: [
-                { name: "Sports", count: 150 },
-                { name: "Formal", count: 60 },
-                { name: "Casual", count: 45 },
-                { name: "Safety Shoes", count: 45 }
-            ] },
-            { name: "Jewelry", icon: jewelryIcon, subItems: [
-                { name: "Earrings", count: 40 },
-                { name: "Couple Rings", count: 50 },
-                { name: "Necklace", count: 30 }
-            ] },
-            { name: "Perfume", icon: perfumeIcon, subItems: [
-                { name: "Clothes Perfume", count: 40 },
-                { name: "Deodorant", count: 50 },
-                { name: "Flower Fragrance", count: 30 },
-                { name: "Air Freshener", count: 30 }
-            ] },
-            { name: "Cosmetics", icon: cosmeticsIcon, subItems: [
-                { name: "Shampoo", count: 40 },
-                { name: "Sunscreen", count: 50 },
-                { name: "Body Wash", count: 30 },
-                { name: "Makeup kit", count: 30 }
-            ] },
-            { name: "Glasses", icon: glassesIcon, subItems: [
-                { name: "Sunglasses", count: 40 },
-                { name: "Lenses", count: 50 }
-            ] },
-            { name: "Bags", icon: bagIcon, subItems: [
-                { name: "Shopping Bag", count: 40 },
-                { name: "Gym Backpack", count: 50 },
-                { name: "Purse", count: 30 },
-                { name: "Wallet", count: 30 }
-            ] },
+            {
+                name: "Clothes", icon: dressIcon, subItems: [
+                    { name: "Shirt", count: 300 },
+                    { name: "Shorts & Jeans", count: 120 },
+                    { name: "Jacket", count: 80 },
+                    { name: "Dress & Frock", count: 80 }
+                ]
+            },
+            {
+                name: "Footwear", icon: shoesIcon, subItems: [
+                    { name: "Sports", count: 150 },
+                    { name: "Formal", count: 60 },
+                    { name: "Casual", count: 45 },
+                    { name: "Safety Shoes", count: 45 }
+                ]
+            },
+            {
+                name: "Jewelry", icon: jewelryIcon, subItems: [
+                    { name: "Earrings", count: 40 },
+                    { name: "Couple Rings", count: 50 },
+                    { name: "Necklace", count: 30 }
+                ]
+            },
+            {
+                name: "Perfume", icon: perfumeIcon, subItems: [
+                    { name: "Clothes Perfume", count: 40 },
+                    { name: "Deodorant", count: 50 },
+                    { name: "Flower Fragrance", count: 30 },
+                    { name: "Air Freshener", count: 30 }
+                ]
+            },
+            {
+                name: "Cosmetics", icon: cosmeticsIcon, subItems: [
+                    { name: "Shampoo", count: 40 },
+                    { name: "Sunscreen", count: 50 },
+                    { name: "Body Wash", count: 30 },
+                    { name: "Makeup kit", count: 30 }
+                ]
+            },
+            {
+                name: "Glasses", icon: glassesIcon, subItems: [
+                    { name: "Sunglasses", count: 40 },
+                    { name: "Lenses", count: 50 }
+                ]
+            },
+            {
+                name: "Bags", icon: bagIcon, subItems: [
+                    { name: "Shopping Bag", count: 40 },
+                    { name: "Gym Backpack", count: 50 },
+                    { name: "Purse", count: 30 },
+                    { name: "Wallet", count: 30 }
+                ]
+            },
         ];
 
         setCategories(staticCategories);
@@ -204,16 +221,65 @@ const EcommerceLayout = () => {
             </div>
 
             {/* Main Content */}
-            <div className="md:col-span-3 space-y-6">
+            <div className="md:col-span-3 space-y-8">
+                {/* T-shirt Customization Section */}
+                <div className="mt-0 flex flex-col items-start gap-6 px-4 lg:px-0">
+                    {/* Heading and Subtitle */}
+                    <div className="text-left max-w-2xl ">
+                        <h1 className="font-semibold text-gray-800 mb-3">New AI Features</h1>
+                        <h1 className="font-extrabold  bg-red-400 h-auto w-auto lg:w-96 px-10 py-2 rounded-lg  text-white text-xs md:text-xl mb-2 drop-shadow-lg">
+                            Customize Your T-shirt
+                        </h1>
+
+                        <p className="text-gray-600 text-base md:text-lg mb-3">
+                            Create your unique style using our AI-powered 3D customization tool.
+                        </p>
+                        <a
+                            href="#"
+                            className="text-blue-600 font-semibold hover:underline transition"
+                        >
+                            Read More
+                        </a>
+                    </div>
+
+                    {/* Canvas Model */}
+                    {/* <div className="w-full flex justify-center mt-6">
+                        <CanvasModel />
+                    </div> */}
+
+                    {/* T-shirt Customizer */}
+                    {/* <div className="w-full mt-6">
+                        <TshirtCustomizer />
+                    </div> */}
+
+                    <div className="app transition-all ease-in border border-gray-200 rounded-lg p-4 bg-white shadow-sm">
+                        <TshirtHome />
+                        <CanvasModel />
+                        <TshirtCustomizer />
+                    </div>
+
+
+                    
+
+
+                </div>
+
+
+
                 <div className="grid md:grid-cols-3 gap-6">
                     <MiniProductsSection title="New Arrivals" products={newArrivals} />
                     <MiniProductsSection title="Trending" products={trending} />
                     <MiniProductsSection title="Top Rated" products={topRated} />
                 </div>
 
+
+                {/* Deal of the Day */}
                 <DealOfTheDay />
+
+                {/* Full Products Section */}
                 <ProductsSection />
             </div>
+
         </div>
     );
 };

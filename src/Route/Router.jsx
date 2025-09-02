@@ -31,6 +31,7 @@ import VendorTrackShipping from "../DashBoard/VendorDashboard/VendorTrackShippin
 import VendorSetting from "../DashBoard/VendorDashboard/VendorSetting";
 import PublicProfileSection from "../DashBoard/VendorDashboard/PublicProfileSection";
 import CartCheckout from "../Pages/User/CartCheckout";
+import TshirtCustomizer from "../AIfeatures/pages/TshirtCustomizer";
 
 export const router = createBrowserRouter([
   {
@@ -41,6 +42,11 @@ export const router = createBrowserRouter([
         {
           path: '/',
           element: <Home />
+        },
+        {
+          path:'/thirt-customization',
+          element:<TshirtCustomizer></TshirtCustomizer>
+
         },
         {
           path: 'aboutus',
