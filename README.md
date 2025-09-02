@@ -1,12 +1,30 @@
-react+vite
+# Warium E-Commerce
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Warium E-Commerce is a modern, responsive online shopping platform built with **React** and **Tailwind CSS**. It provides users with a seamless shopping experience, allowing them to browse products, view details, manage a cart, and make purchases with a clean and intuitive interface.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Responsive Design**: Works flawlessly on mobile, tablet, and desktop devices.
+- **Product Listing & Filtering**: Browse products by categories with dynamic filtering options.
+- **Product Details Page**: View detailed information including images, price, description, and availability.
+- **Shopping Cart**: Add and remove products, view total cost, and proceed to checkout.
+- **Wishlist Functionality**: Save favorite products for future purchases.
+- **Dynamic Dashboard**: Manage cart and wishlist items easily.
+- **Interactive UI**: Smooth animations and transitions using modern frontend techniques.
+- **Persistent Data**: Cart and wishlist data stored in **LocalStorage** for continuity.
+- **Clean Codebase**: Built with modular React components for easy maintenance and scalability.
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Frontend**: React, Tailwind CSS, JavaScript
+- **State Management**: React Context API
+- **Storage**: LocalStorage for cart and wishlist persistence
+- **Icons & Animations**: FontAwesome, Framer Motion
+- **Version Control**: Git & GitHub
+
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/your-username/warium-ecommerce.git
