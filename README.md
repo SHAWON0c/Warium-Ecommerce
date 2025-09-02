@@ -28,3 +28,5 @@ Warium E-Commerce is a modern, responsive online shopping platform built with **
 
 ```bash
 git clone https://github.com/your-username/warium-ecommerce.git
+
+All rights reserved
