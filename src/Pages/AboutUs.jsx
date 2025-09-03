@@ -77,7 +77,7 @@ const AboutUs = () => {
                     <nav className="flex items-center text-md text-gray-600 space-x-1 gap-2">
                         <span>Home</span>
                         <span className="mx-1 text-lg text-red-400">››</span>
-                        <span className='text-red-400'>About us</span>
+                        <span className='text-red-300'>About us</span>
                     </nav>
                 </div>
             </div>
