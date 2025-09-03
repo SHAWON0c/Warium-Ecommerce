@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import banner1 from '../assets/images/banner/banner-5.jpg';
-import banner2 from '../assets/images/banner/6.jpg';
-import banner3 from '../assets/images/banner/banner-4.jpg';
+import banner1 from '../assets/images/banner/6.jpg';
+import banner2 from '../assets/images/banner/banner-4.jpg';
+import banner3 from '../assets/images/banner/banner-5.jpg';
 import "../CSS/Categories.css"; // Custom scrollbar & buttons CSS
 
 const Herosection = () => {
@@ -52,11 +52,11 @@ const Herosection = () => {
             />
 
             {/* Overlay Text */}
-            <div className=" mt-10 lg:mt-0 absolute bottom-8 sm:bottom-16 md:bottom-24 lg:bottom-36 left-4 sm:left-12 md:left-20 lg:left-32 text-white p-2 sm:p-4 rounded max-w-[40%] sm:max-w-[460px] bg-gradient-to-t from-black/50 to-transparent lg:bg-none items-center lg:none">
-              <h2 className="text-red-400 font-medium text-sm sm:text-xl md:text-2xl mb-0 lg:mb-1 sm:mb-2">{bannerTexts[index].title}</h2>
+            <div className=" mt-10 lg:mt-0 absolute bottom-8 sm:bottom-16 md:bottom-24 lg:bottom-72 left-4 sm:left-12 md:left-20 lg:left-32 text-white p-2 sm:p-4 rounded max-w-[40%] sm:max-w-[460px] bg-gradient-to-t from-black/50 to-transparent lg:bg-none items-center lg:none">
+              <h2 className="text-red-400 font-medium text-sm sm:text-xl md:text-2xl mb-0 lg:mb-2 sm:mb-2">{bannerTexts[index].title}</h2>
               <h1 className="uppercase font-extrabold text-base sm:text-2xl md:text-4xl lg:text-[2.65rem] mb-2 text-black">{bannerTexts[index].subtitle1}</h1>
-              <p className="font-semibold text-gray-200 text-sm sm:text-base md:text-lg lg:text-2xl mt-2">{bannerTexts[index].subtitle2}</p>
-              <button className='bg-red-400 text-white px-4 py-2 sm:px-6 sm:py-3 mt-2 rounded-md hover:bg-black transition-colors duration-300 font-semibold text-xs sm:text-sm md:text-base'>
+              <p className="font-semibold text-gray-500 text-sm sm:text-base md:text-lg lg:text-2xl mt-2 lg:mt-4">{bannerTexts[index].subtitle2}</p>
+              <button className='bg-red-400 text-white px-4 py-2 sm:px-6 sm:py-3 mt-2 lg:mt-4 rounded-md hover:bg-black transition-colors duration-300 font-semibold text-xs sm:text-sm md:text-base'>
                 Shop Now
               </button>
             </div>

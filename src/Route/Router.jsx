@@ -32,6 +32,8 @@ import VendorSetting from "../DashBoard/VendorDashboard/VendorSetting";
 import PublicProfileSection from "../DashBoard/VendorDashboard/PublicProfileSection";
 import CartCheckout from "../Pages/User/CartCheckout";
 import TshirtCustomizer from "../AIfeatures/pages/TshirtCustomizer";
+import Coupon from "../DashBoard/ModeratorDashboard/Coupon";
+import CouponApprovals from "../DashBoard/AdminDashboard/CouponAprovals";
 
 export const router = createBrowserRouter([
   {
@@ -157,6 +159,14 @@ export const router = createBrowserRouter([
           path:"vendors-products-details",
           element:<VendorProductsDashboard></VendorProductsDashboard>
         },
+        {
+          path:'add-coupon',
+          element:<Coupon></Coupon>
+        },
+        {
+          path:'approve-coupon',
+          element:<CouponApprovals></CouponApprovals>
+        }
       
 
       ]

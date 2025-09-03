@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaPlus } from "react-icons/fa";
+import { useParams } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../hooks/UseAxiosSecure";
 import UseAuth from "../../hooks/UseAuth";
@@ -26,18 +27,22 @@ const VendorUpload = () => {
   const [productName, setProductName] = useState("");
   const [category, setCategory] = useState("shirts");
   const [shortDesc, setShortDesc] = useState("");
-  const [selectedColors, setSelectedColors] = useState([]); // ✅ array now
-  const [sizes, setSizes] = useState([]); // ✅ array works for MongoDB
+  const [selectedColors, setSelectedColors] = useState([]);
+  const [sizes, setSizes] = useState([]);
   const [price, setPrice] = useState("");
   const [oldPrice, setOldPrice] = useState("");
   const [discount, setDiscount] = useState("");
-  const [labelType, setLabelType] = useState("");
+  const [labelType, setLabelType] = useState("New");
   const [quantity, setQuantity] = useState("");
   const [fullDetail, setFullDetail] = useState("");
   const [tags, setTags] = useState("");
   const { user } = UseAuth();
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
+  const { id } = useParams();
+
+  const [isEdit, setIsEdit] = useState(false);
+  const [productId, setProductId] = useState(null);
 
   // Cleanup object URLs on unmount
   useEffect(() => {
@@ -47,6 +52,38 @@ const VendorUpload = () => {
       });
     };
   }, [images]);
+
+  // Fetch product if ID exists
+  useEffect(() => {
+    const fetchProduct = async () => {
+      if (!id) return;
+      try {
+        const res = await axiosSecure.get(`/products/${id}`);
+        const product = res.data;
+
+        setIsEdit(true);
+        setProductId(product._id);
+        setProductName(product.productName);
+        setCategory(product.category);
+        setShortDesc(product.shortDesc);
+        setSelectedColors(product.colors || []);
+        setSizes(product.sizes || []);
+        setPrice(product.price);
+        setOldPrice(product.oldPrice);
+        setDiscount(product.discount);
+        setLabelType(product.labelType || "New");
+        setQuantity(product.quantity);
+        setFullDetail(product.fullDetail);
+        setTags((product.tags || []).join(","));
+        setImages(product.images?.[0]|| []);
+      } catch (err) {
+        console.error("Failed to fetch product:", err);
+        alert("Failed to load product data");
+      }
+    };
+
+    fetchProduct();
+  }, [id, axiosSecure]);
 
   // Handle image selection
   const handleImageUpload = (e) => {
@@ -75,80 +112,62 @@ const VendorUpload = () => {
   };
 
   // Handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (!user?.email) {
-      alert("User not logged in!");
-      return;
-    }
+  if (!user?.email) {
+    alert("User not logged in!");
+    return;
+  }
 
-    if (!images.length) {
-      alert("Please select at least one image.");
-      return;
-    }
+  try {
+    const productData = {
+      userEmail: user.email,
+      productName,
+      category,
+      shortDesc,
+      colors: selectedColors,
+      sizes,
+      price,
+      oldPrice,
+      discount,
+      labelType,
+      quantity,
+      fullDetail,
+      tags: tags.split(",").map((t) => t.trim()),
+      images: images, // keep existing images as-is
+    };
 
-    try {
-      const uploadedImageUrls = await Promise.all(
-        images.map(async (file) => {
-          const imgFormData = new FormData();
-          imgFormData.append("image", file);
-
-          const res = await axiosPublic.post(imageHostingAPI, imgFormData, {
-            headers: { "Content-Type": "multipart/form-data" },
-          });
-
-          if (res.data?.data?.display_url) return res.data.data.display_url;
-          throw new Error("Image upload failed");
-        })
-      );
-
-      console.log("sizes before sending:", sizes);
-
-
-      const productData = {
-        userEmail: user.email,
-        productName,
-        category,
-        shortDesc,
-        colors: selectedColors, // ✅ array of colors
-        sizes, // ✅ array of sizes
-        price,
-        oldPrice,
-        discount,
-        labelType,
-        quantity,
-        fullDetail,
-        tags: tags.split(",").map((t) => t.trim()), // ✅ save as array
-        images: uploadedImageUrls,
-
-        
-
-      };
-
-      const productRes = await axiosSecure.post("/products", productData);
-      console.log("✅ Product saved:", productRes.data);
+    if (isEdit) {
+      await axiosSecure.put(`/products/${productId}`, productData);
+      alert("Product updated successfully!");
+    } else {
+      await axiosSecure.post("/products", productData);
       alert("Product uploaded successfully!");
-
-      // Reset form
-      setImages([]);
-      setProductName("");
-      setCategory("shirts");
-      setShortDesc("");
-      setSelectedColors([]);
-      setSizes([]);
-      setPrice("");
-      setOldPrice("");
-      setDiscount("");
-      setLabelType("New");
-      setQuantity("");
-      setFullDetail("");
-      setTags("");
-    } catch (error) {
-      console.error("❌ Error uploading product:", error);
-      alert("Failed to upload product.");
     }
-  };
+
+    // Reset form (optional)
+    setProductName("");
+    setCategory("shirts");
+    setShortDesc("");
+    setSelectedColors([]);
+    setSizes([]);
+    setPrice("");
+    setOldPrice("");
+    setDiscount("");
+    setLabelType("New");
+    setQuantity("");
+    setFullDetail("");
+    setTags("");
+    setIsEdit(false);
+    setProductId(null);
+
+  } catch (error) {
+    console.error("Error saving product:", error);
+    alert("Failed to save product.");
+  }
+};
+
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-[1320px] mx-auto mt-10 mb-10">
@@ -213,9 +232,7 @@ const VendorUpload = () => {
                         </button>
                       </>
                     ) : (
-                      <p className="text-xs text-gray-400 text-center">
-                        765 X 850
-                      </p>
+                      <p className="text-xs text-gray-400 text-center">765 X 850</p>
                     )}
                   </div>
                 ))}
@@ -255,8 +272,7 @@ const VendorUpload = () => {
                   <option>PERFUME</option>
                   <option>COSMETICS</option>
                   <option>PARTY WEAR</option>
-                   <option>WATCH</option>
-
+                  <option>WATCH</option>
                 </select>
               </div>
             </div>
@@ -277,9 +293,7 @@ const VendorUpload = () => {
             {/* Colors & Sizes */}
             <div className="flex items-center gap-4">
               <div>
-                <label className="block text-sm font-semibold mb-1">
-                  Colors
-                </label>
+                <label className="block text-sm font-semibold mb-1">Colors</label>
                 <div className="flex flex-wrap gap-2">
                   {Object.entries(colorPalette).map(([name, className]) => (
                     <div
@@ -314,9 +328,7 @@ const VendorUpload = () => {
             {/* Price, Quantity, Old Price, Discount */}
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-semibold mb-1">
-                  Price (USD)
-                </label>
+                <label className="block text-sm font-semibold mb-1">Price (USD)</label>
                 <input
                   type="number"
                   value={price}
@@ -327,9 +339,7 @@ const VendorUpload = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-semibold mb-1">
-                  Quantity
-                </label>
+                <label className="block text-sm font-semibold mb-1">Quantity</label>
                 <input
                   type="number"
                   value={quantity}
@@ -343,9 +353,7 @@ const VendorUpload = () => {
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-semibold mb-1">
-                  Old Price (USD)
-                </label>
+                <label className="block text-sm font-semibold mb-1">Old Price (USD)</label>
                 <input
                   type="number"
                   value={oldPrice}
@@ -355,9 +363,7 @@ const VendorUpload = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-semibold mb-1">
-                  Discount (%)
-                </label>
+                <label className="block text-sm font-semibold mb-1">Discount (%)</label>
                 <input
                   type="number"
                   value={discount}
@@ -370,9 +376,7 @@ const VendorUpload = () => {
 
             {/* Label Type */}
             <div>
-              <label className="block text-sm font-semibold mb-1">
-                Label Type
-              </label>
+              <label className="block text-sm font-semibold mb-1">Label Type</label>
               <select
                 value={labelType}
                 onChange={(e) => setLabelType(e.target.value)}
@@ -385,9 +389,7 @@ const VendorUpload = () => {
 
             {/* Full Detail */}
             <div>
-              <label className="block text-sm font-semibold mb-1">
-                Full Detail
-              </label>
+              <label className="block text-sm font-semibold mb-1">Full Detail</label>
               <textarea
                 value={fullDetail}
                 onChange={(e) => setFullDetail(e.target.value)}
@@ -399,9 +401,7 @@ const VendorUpload = () => {
 
             {/* Tags */}
             <div>
-              <label className="block text-sm font-semibold mb-1">
-                Product Tags (comma separated)
-              </label>
+              <label className="block text-sm font-semibold mb-1">Product Tags (comma separated)</label>
               <input
                 type="text"
                 value={tags}
@@ -415,7 +415,7 @@ const VendorUpload = () => {
               type="submit"
               className="bg-blue-600 text-white px-4 py-2 rounded-md mt-4 hover:bg-blue-700"
             >
-              Submit
+              {isEdit ? "Update Product" : "Submit"}
             </button>
           </div>
         </form>

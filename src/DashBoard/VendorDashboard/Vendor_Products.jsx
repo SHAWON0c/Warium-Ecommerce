@@ -17,7 +17,7 @@ const VendorProducts = () => {
     const fetchProducts = async () => {
       try {
         const res = await axios.get(
-          `http://192.168.0.235:5000/products?vendorEmail=${user.email}`
+          `http://localhost:5000/products?vendorEmail=${user.email}`
         );
         setProducts(res.data);
       } catch (err) {
@@ -42,7 +42,7 @@ const VendorProducts = () => {
     if (!window.confirm("Are you sure you want to delete this product?")) return;
 
     try {
-      await axios.delete(`http://192.168.0.235:5000/products/${id}`);
+      await axios.delete(`http://localhost:5000/products/${id}`);
       setProducts(products.filter((p) => p._id !== id));
     } catch (err) {
       console.error("Delete failed:", err);

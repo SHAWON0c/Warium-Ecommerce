@@ -65,12 +65,14 @@ const DashBoard = () => {
       { path: "/dashboard/all-vendors", label: "All Vendors", icon: Package },
       { path: "/dashboard/all-moderators", label: "All Moderators", icon: Shield },
       { path: "/dashboard/makeadmin", label: "Pending Requests", icon: AlertTriangle },
+      { path: "/dashboard/approve-coupon", label: "Pending Coupon Aprovals", icon: AlertTriangle },
     ],
     moderator: [
       { path: "/moderator/all-vendors", label: "All Vendors", icon: Package },
       { path: "/moderator/new-vendor-requests", label: "New Seller Requests", icon: Upload },
       { path: "/moderator/moderation", label: "Product Moderation", icon: BarChart3 },
       { path: "/moderator/reports", label: "Reports & Spams", icon: AlertTriangle },
+       { path: "/dashboard/add-coupon", label: "Add Coupon", icon: AlertTriangle },
     ],
   };
 

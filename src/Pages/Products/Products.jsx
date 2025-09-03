@@ -12,7 +12,7 @@ const ProductsSection = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://192.168.0.235:5000/products")
+    fetch("http://localhost:5000/products")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);

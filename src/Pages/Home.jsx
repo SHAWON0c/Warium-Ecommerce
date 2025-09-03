@@ -14,7 +14,7 @@ const Home = () => {
     return (
         <div className="bg-white min-h-screen">
             {/* Hero Section */}
-            <div className="w-full lg:max-w-[90%] lg:mx-auto">
+            <div className="w-full lg:max-w-[80%] lg:mx-auto">
                 <Herosection />
             </div>
 
@@ -32,33 +32,7 @@ const Home = () => {
 
 
                 {/* T-shirt AI Section */}
-                <div className="w-full flex flex-col items-center gap-6 my-12 px-4 lg:px-0">
-                    {/* Heading and Button */}
-                    <div className="text-center flex flex-col items-center gap-3 justify-center">
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800">
-                            Customize Your T-shirt
-                        </h2>
-                        <p className="text-sm md:text-base text-gray-600 max-w-xl">
-                            Create your unique style using our AI-powered 3D customization tool.
-                        </p>
-                        <button
-                            onClick={() => alert("Start Customizing!")}
-                            className="mt-3 px-6 py-2 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700 transition"
-                        >
-                            Start Customizing
-                        </button>
-                    </div>
-
-                    {/* Canvas Model */}
-                    {/* <div className="w-full flex justify-center mt-2 mx-auto">
-                        <CanvasModel />
-                    </div> */}
-
-                    {/* T-shirt Customizer */}
-                    {/* <div className="w-full mt-2 ">
-                        <TshirtCustomizer />
-                    </div> */}
-                </div>
+            
 
 
                 <TestimonialServices />

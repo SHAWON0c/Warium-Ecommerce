@@ -13,20 +13,22 @@ import {
 } from "react-icons/fa";
 import { BiMinus, BiPlus, BiShoppingBag, BiHeart, BiShow } from "react-icons/bi";
 import axios from "axios";
-import UseAuth from "../../hooks/UseAuth";
+
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/UseAxiosSecure";
 import Usecart from "../../hooks/Usecart";
 
-
+import UseAuth from "../../hooks/UseAuth";
+import { faL } from "@fortawesome/free-solid-svg-icons";
 const ProductPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+
   // Get product from state or sessionStorage
   const [product, setProduct] = useState(location.state?.product || null);
 
-  // console.log(product.quantity);
+  console.log(product?.userEmail);
 
   // Qty, size, color
   const [qty, setQty] = useState(1);
@@ -35,6 +37,7 @@ const ProductPage = () => {
   const [mainImage, setMainImage] = useState(product?.images?.[0]?.[0] || "");
   const [activeTab, setActiveTab] = useState("detail");
   const [cart, isLoading, isError, refetch] = Usecart();
+  const [showDiscountBox, setShowDiscountBox] = useState(false);
 
 
 
@@ -46,7 +49,7 @@ const ProductPage = () => {
     { id: 3, name: "Sadia", text: "Excellent build and performance." },
   ]);
   const { user } = UseAuth();
-  // console.log(user);
+  console.log(user);
   const axiosSecure = useAxiosSecure();
 
   const [newReview, setNewReview] = useState("");
@@ -183,7 +186,7 @@ const ProductPage = () => {
   const stockLeft = product.quantity;
   const stockTotal = 100;
   const stockPercent = Math.max(6, Math.round(((stockTotal - stockLeft) / stockTotal) * 100));
-  const width=100;
+  const width = 100;
 
   return (
     <div className="w-full mx-auto font-inter px-4 py-5 lg:px-6 lg:py-10 -mt-10 lg:-mt-10">
@@ -326,41 +329,102 @@ const ProductPage = () => {
 
 
               {/* Actions & Social Icons */}
-              <div className="mt-3 flex flex-col lg:flex-row  gap-3 items-center">
-                <div className="flex items-center gap-4 text-black">
-                  <div className="flex items-center border rounded overflow-hidden px-2">
-                    <button onClick={() => setQty((q) => Math.max(1, q - 1))} className="hover:bg-gray-50">
-                      <BiMinus size={16} className="sm:size-18" />
+              <div className="mt-3 flex flex-col lg:flex-row gap-6 items-start lg:items-center">
+                {/* Left: Actions */}
+                <div>
+                  <div className="flex items-center gap-4 text-black">
+                    {/* Qty Control */}
+                    <div className="flex items-center border rounded overflow-hidden px-2 bg-white shadow-sm">
+                      <button
+                        onClick={() => setQty((q) => Math.max(1, q - 1))}
+                        className="hover:bg-gray-50 px-2 py-1"
+                      >
+                        <BiMinus size={16} />
+                      </button>
+                      <div className="px-3 sm:px-6 py-1 sm:py-2 text-xs sm:text-sm font-medium">
+                        {qty}
+                      </div>
+                      <button
+                        onClick={handleIncrease}
+                        className="hover:bg-gray-50 px-2 py-1"
+                      >
+                        <BiPlus size={16} />
+                      </button>
+                    </div>
+
+                    {/* Add to Cart */}
+                    <button
+                      onClick={() => handleAddToCart(product)}
+                      className="text-xs flex items-center gap-2 px-5 py-2 lg:px-7 lg:py-3 
+                   rounded-lg bg-gradient-to-r from-red-500 to-red-600 text-white 
+                   font-semibold shadow hover:opacity-95 hover:from-black hover:to-gray-800 
+                   transition-all duration-300"
+                    >
+                      <BiShoppingBag size={18} />
+                      <span className="whitespace-nowrap">ADD TO CART</span>
                     </button>
-                    <div className="px-3 sm:px-6 py-1 sm:py-2 text-xs sm:text-sm">{qty}</div>
-                    <button onClick={handleIncrease} className="hover:bg-gray-50">
-                      <BiPlus size={16} className="sm:size-18 text-black" />
+
+                    {/* Wishlist & Quick View */}
+                    <button className="border p-2 rounded-lg bg-gray-50 hover:bg-gray-100 transition">
+                      <BiHeart size={18} />
+                    </button>
+                    <button className="border p-2 rounded-lg bg-gray-50 hover:bg-gray-100 transition">
+                      <BiShow size={18} />
                     </button>
                   </div>
 
-                  <button onClick={() => handleAddToCart(product)}
-                    className="text-xs flex items-center gap-2 px-4 py-2 lg:px-6 lg:py-3 rounded bg-brand-blue text-white font-semibold bg-red-400 shadow hover:opacity-95 hover:bg-black transition-colors duration-300">
-                    <BiShoppingBag size={18} />
-                    <span className="whitespace-nowrap">ADD TO CART</span>
-                  </button>
-
-                  <button className="btn btn-ghost border p-2 rounded bg-blue-100 text-black">
-                    <BiHeart />
-                  </button>
-                  <button className="btn btn-ghost border p-2 rounded bg-blue-100 text-black">
-                    <BiShow />
-                  </button>
+                  {/* Socials */}
+                  <div className="flex gap-4 mt-3 text-gray-500">
+                    <FaFacebookF className="cursor-pointer hover:text-blue-600" />
+                    <FaTwitter className="cursor-pointer hover:text-sky-500" />
+                    <FaYoutube className="cursor-pointer hover:text-red-500" />
+                    <FaInstagram className="cursor-pointer hover:text-pink-500" />
+                    <FaPinterestP className="cursor-pointer hover:text-red-600" />
+                    <FaWhatsapp className="cursor-pointer hover:text-green-500" />
+                  </div>
                 </div>
 
-                <div className="flex gap-4 mt-2 text-gray-500">
-                  <FaFacebookF className="cursor-pointer" />
-                  <FaTwitter className="cursor-pointer" />
-                  <FaYoutube className="cursor-pointer" />
-                  <FaInstagram className="cursor-pointer" />
-                  <FaPinterestP className="cursor-pointer" />
-                  <FaWhatsapp className="cursor-pointer" />
-                </div>
+                {/* Right: Discount (Only Seller Sees) */}
+
               </div>
+
+              {product?.userEmail === user?.email && (
+                <div className="flex flex-col items-start gap-2 bg-gradient-to-r from-yellow-400 to-orange-500 
+                    text-white px-5 py-4 rounded-xl shadow-md mt-2">
+                  <h4 className="text-lg font-bold flex items-center gap-2">
+                    🎉 Add a Special Discount
+                  </h4>
+
+                  <button
+                    onClick={() => setShowDiscountBox(true)}
+                    className="mt-2 px-4 py-2 bg-white text-orange-600 rounded-lg font-semibold shadow hover:bg-gray-100"
+                  >
+                    + Set Discount
+                  </button>
+
+                  <p className="text-sm opacity-90">
+                    As the seller, you can set a custom discount for this product to attract more buyers.
+                  </p>
+                  {showDiscountBox && (
+                    <div className="mt-4 p-4 border border-orange-400 rounded-lg bg-orange-50">
+                      <h4 className="font-bold text-orange-600 mb-2">Set Discount</h4>
+                      <input
+                        type="number"
+                        placeholder="Enter discount %"
+                        className="border rounded px-3 py-2 w-full text-black"
+                      />
+                      <button
+                        className="mt-2 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700"
+                        onClick={()=> handleAddDiscount()}
+                      >
+                        Apply Discount
+                      </button>
+                    </div>
+                  )}
+
+                </div>
+              )}
+
             </div>
           </div>
 

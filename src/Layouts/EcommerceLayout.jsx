@@ -120,6 +120,31 @@ const EcommerceLayout = () => {
         setOpenIndex(openIndex === index ? null : index);
     };
 
+    const [coupons, setCoupons] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    const fetchCoupons = async () => {
+        try {
+            const res = await fetch("http://localhost:5000/coupons/approved");
+            const data = await res.json();
+            setCoupons(data);
+        } catch (error) {
+            console.error("Error fetching approved coupons:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchCoupons();
+    }, []);
+
+
+
+    console.log(coupons);
+
+
+
 
 
     const renderStars = (rating) => {
@@ -218,7 +243,60 @@ const EcommerceLayout = () => {
                         ))}
                     </ul>
                 </div>
+
+                {/* Offer Coupons -  */}
+                <div className="mt-6 p-4 border rounded-xl bg-red-300 shadow-lg w-auto lg:w-80">
+                    <h3 className="font-bold text-gray-800 uppercase text-sm mb-4 tracking-wider">
+                        Available Coupons
+                    </h3>
+
+                    <ul className="space-y-3">
+                        {coupons.map((coupon, i) => (
+                            <li
+                                key={i}
+                                className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 rounded-lg border border-gray-200 bg-white hover:shadow-md transition-all duration-300 cursor-pointer"
+                            >
+                                {/* Coupon Info */}
+                                <div className="flex flex-col gap-1">
+                                    <span className="font-semibold text-gray-800 text-sm sm:text-base">
+                                        {coupon.code} - {coupon.discountType === "percentage" ? `${coupon.discountValue}% Off` : `$${coupon.discountValue} Off`}
+                                    </span>
+                                    {coupon.minPurchase > 0 && (
+                                        <span className="text-gray-500 text-xs sm:text-sm">
+                                            Min Purchase: ${coupon.minPurchase}
+                                        </span>
+                                    )}
+                                    {/* {coupon.startDate && coupon.endDate && (
+                                        <span className="text-gray-400 text-xs sm:text-sm">
+                                            Valid: {coupon.startDate.toLocaleDateString()} - {coupon.endDate.toLocaleDateString()}
+                                        </span>
+                                    )} */}
+                                </div>
+
+                                {/* Status Badge */}
+                                <div className="mt-2 sm:mt-0">
+                                    <span className={`px-2 py-1 rounded-full text-xs font-semibold ${coupon.isActive && coupon.isApproved
+                                            ? "bg-green-100 text-green-800"
+                                            : coupon.isActive
+                                                ? "bg-blue-100 text-blue-800"
+                                                : "bg-gray-100 text-gray-500"
+                                        }`}>
+                                        {coupon.isActive
+                                            ? coupon.isApproved
+                                                ? "Active"
+                                                : "Pending Approval"
+                                            : "Inactive"}
+                                    </span>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+
             </div>
+
+
 
             {/* Main Content */}
             <div className="md:col-span-3 space-y-8">
@@ -259,7 +337,7 @@ const EcommerceLayout = () => {
                     </div>
 
 
-                    
+
 
 
                 </div>

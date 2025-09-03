@@ -6,7 +6,7 @@ import quotes from "../assets/images/icons/quotes.svg";
 
 const TestimonialServices = () => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mt-2 items-start mx-auto  md:px-6">
+    <div className="w-full grid grid-cols-1 lg:grid-cols-4 gap-6 mt-2 items-start mx-auto  md:px-6">
       
       {/* Testimonial Section */}
       <div className="lg:col-span-1">
