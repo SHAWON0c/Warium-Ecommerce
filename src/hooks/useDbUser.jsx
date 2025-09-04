@@ -15,7 +15,7 @@ const useDbUser = () => {
       }
 
       try {
-        const res = await fetch(`http://localhost:5000/users/${user.email}`);
+        const res = await fetch(`https://warium-ecommerce-server-api.onrender.com/users/${user.email}`);
         const data = await res.json();
         setDbUser(data);
       } catch (error) {

@@ -111,10 +111,10 @@ const TshirtHome = () => {
           </AnimatePresence>
 
           {/* Footer */}
-          <div className="absolute bottom-12 left-2 z-10 p-1 sm:p-2 bg-white/20 backdrop-blur-sm rounded text-[10px] sm:text-xs text-gray-500">
-            <p>© {new Date().getFullYear()} WARIUM. All rights reserved.</p>
-            <p className="text-[9px] sm:text-[10px]">Sponsored by shawonEDULab</p>
-          </div>
+
+          {/* <div className="absolute bottom-12  left-2 z-10 p-1 sm:p-2 bg-white/20 backdrop-blur-sm rounded text-[10px] sm:text-xs text-gray-500">
+      
+          </div> */}
         </motion.section>
       )}
     </AnimatePresence>

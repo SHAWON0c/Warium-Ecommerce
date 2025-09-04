@@ -125,7 +125,7 @@ const EcommerceLayout = () => {
 
     const fetchCoupons = async () => {
         try {
-            const res = await fetch("http://localhost:5000/coupons/approved");
+            const res = await fetch("https://warium-ecommerce-server-api.onrender.com/coupons/approved");
             const data = await res.json();
             setCoupons(data);
         } catch (error) {

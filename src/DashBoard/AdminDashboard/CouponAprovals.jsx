@@ -13,7 +13,7 @@ const CouponApprovals = () => {
   useEffect(() => {
     const fetchCoupons = async () => {
       try {
-        const res = await fetch("http://localhost:5000/coupons/pending");
+        const res = await fetch("https://warium-ecommerce-server-api.onrender.com/coupons/pending");
         const data = await res.json();
         setCoupons(data);
       } catch (error) {
@@ -31,7 +31,7 @@ const CouponApprovals = () => {
   // approve coupon
   const handleApprove = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/coupon/approve/${id}`, {
+      const res = await fetch(`https://warium-ecommerce-server-api.onrender.com/coupon/approve/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body:JSON.stringify({adminEmail:AdminEmail, adminName:AdminName })

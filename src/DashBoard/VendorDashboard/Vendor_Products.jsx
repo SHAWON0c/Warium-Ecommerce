@@ -17,7 +17,7 @@ const VendorProducts = () => {
     const fetchProducts = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/products?vendorEmail=${user.email}`
+          `https://warium-ecommerce-server-api.onrender.com/products?vendorEmail=${user.email}`
         );
         setProducts(res.data);
       } catch (err) {
@@ -42,7 +42,7 @@ const VendorProducts = () => {
     if (!window.confirm("Are you sure you want to delete this product?")) return;
 
     try {
-      await axios.delete(`http://localhost:5000/products/${id}`);
+      await axios.delete(`https://warium-ecommerce-server-api.onrender.com/products/${id}`);
       setProducts(products.filter((p) => p._id !== id));
     } catch (err) {
       console.error("Delete failed:", err);

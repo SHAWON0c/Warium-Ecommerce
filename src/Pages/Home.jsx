@@ -19,7 +19,7 @@ const Home = () => {
             </div>
 
             {/* Main Content Centered */}
-            <div className='max-w-[70%] mx-auto flex flex-col gap-12'>
+            <div className='lg:max-w-[70%] max-w-[90%] mx-auto flex flex-col gap-12'>
                 <Categories />
                 <EcommerceLayout />
 

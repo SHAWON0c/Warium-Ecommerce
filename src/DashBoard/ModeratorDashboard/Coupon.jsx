@@ -65,7 +65,7 @@ const Coupon = () => {
         setMessage("Submitting...");
 
         try {
-            const response = await fetch("http://localhost:5000/coupon", {
+            const response = await fetch("https://warium-ecommerce-server-api.onrender.com/coupon", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

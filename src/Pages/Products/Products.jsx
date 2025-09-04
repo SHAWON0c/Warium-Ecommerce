@@ -12,7 +12,7 @@ const ProductsSection = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:5000/products")
+    fetch("https://warium-ecommerce-server-api.onrender.com/products")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
@@ -63,18 +63,18 @@ const ProductsSection = () => {
     <div className="">
       <h1 className="font-semibold text-gray-800 mb-8 text-xl sm:text-2xl md:text-3xl">Products</h1>
 
-      <div className="grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
+      <div className="w-full mx-auto  grid gap-6 sm:gap-8 grid-cols-2 sm:grid-cols-2 lg:grid-cols-4">
         {isLoading
           ? Array.from({ length: productsPerPage }).map((_, i) => <SkeletonCard key={i} />)
           : randomProducts.map((product) => (
             <Link
               key={product._id}
               onClick={() => handleNavigate(product)}
-              className="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-500 flex flex-col"
+              className="h-60 lg:h-80 lg:w-full group relative bg-white rounded-xl lg:rounded-3xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-500 flex flex-col border border-gray-200"
             >
               {/* Badge */}
               {product.labelType && (
-                <span className="absolute top-3 left-3 bg-red-500 text-white text-xs sm:text-sm font-semibold uppercase px-2 sm:px-3 py-1 rounded-full shadow-lg z-20">
+                <span className=" absolute top-3 left-3 bg-red-500 text-white text-xs sm:text-sm font-semibold uppercase px-2 sm:px-3 py-1 rounded-full shadow-lg z-20">
                   {product.labelType}
                 </span>
               )}
@@ -110,13 +110,13 @@ const ProductsSection = () => {
               {/* Product Info */}
               <div className="p-4 flex flex-col justify-between flex-1">
                 <div>
-                  <div className="text-gray-400 text-xs sm:text-sm uppercase font-semibold mb-1">
+                  <div className="text-gray-400 text-xs sm:text-sm uppercase font-semibold mb-0">
                     {product.category}
                   </div>
-                  <h2 className="text-gray-800 font-semibold text-sm sm:text-base md:text-lg mb-2 truncate">
+                  <h2 className="text-gray-800 font-semibold text-sm sm:text-base md:text-lg mb-0 truncate">
                     {product.productName}
                   </h2>
-                  <div className="flex items-center mb-2">
+                  <div className="flex items-center mb-0">
                     {Array.from({ length: 5 }, (_, i) => (
                       <span
                         key={i}
@@ -130,12 +130,12 @@ const ProductsSection = () => {
 
                 <div className="flex flex-col sm:flex-row justify-between items-center mt-auto gap-2">
                   <div className="flex items-center gap-2">
-                    <span className="text-lg sm:text-xl font-bold text-gray-900">${product.price}.00</span>
+                    <span className="text-xs sm:text-sm font-bold text-gray-900">${product.price}.00</span>
                     {product.oldPrice && (
                       <span className="text-gray-400 line-through text-sm sm:text-base">${product.oldPrice}.00</span>
                     )}
                   </div>
-                  <button className=" py-1 md:h-8 md:w-16 flex items-center justify-center bg-black text-white rounded-lg text-xs sm:text-sm hover:bg-gray-900 transition">
+                  <button className=" w-20 py-1 md:h-8 md:w-16 flex items-center justify-center bg-black text-white rounded-lg text-xs sm:text-sm hover:bg-gray-900 transition">
                     Buy Now
                   </button>
 
@@ -147,21 +147,21 @@ const ProductsSection = () => {
           ))}
       </div>
 
-      {/* Pagination */ }
-  <div className="flex flex-wrap justify-center mt-10 gap-3">
-    {Array.from({ length: totalPages }, (_, i) => (
-      <button
-        key={i}
-        onClick={() => setCurrentPage(i + 1)}
-        className={`px-4 py-2 rounded-full font-semibold transition ${currentPage === i + 1
-          ? "bg-red-500 text-white shadow-lg"
-          : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-          }`}
-      >
-        {i + 1}
-      </button>
-    ))}
-  </div>
+      {/* Pagination */}
+      <div className="flex flex-wrap justify-center mt-10 gap-3">
+        {Array.from({ length: totalPages }, (_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrentPage(i + 1)}
+            className={`px-4 py-2 rounded-full font-semibold transition ${currentPage === i + 1
+              ? "bg-red-500 text-white shadow-lg"
+              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+              }`}
+          >
+            {i + 1}
+          </button>
+        ))}
+      </div>
     </div >
 
   );
