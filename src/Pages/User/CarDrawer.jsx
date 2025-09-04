@@ -3,10 +3,15 @@ import Usecart from "../../hooks/Usecart";
 import { TiDelete } from "react-icons/ti";
 import Swal from "sweetalert2";
 import UseAxiosSecure from "../../hooks/UseAxiosSecure";
+import {  useNavigate } from "react-router-dom";
+
 
 const CartDrawer = ({ isOpen, onClose }) => {
   const [cart, , , refetch] = Usecart();
   const axiosSecure = UseAxiosSecure();
+
+  const navigate = useNavigate();
+
 
   // subtotal, vat, total
   const subTotal = cart.reduce(
@@ -47,34 +52,36 @@ const CartDrawer = ({ isOpen, onClose }) => {
       return;
     }
 
-    Swal.fire({
-      title: "Proceed to Checkout?",
-      text: `Your total is $${total.toFixed(2)}`,
-      icon: "question",
-      showCancelButton: true,
-      confirmButtonText: "Yes, Checkout",
-      cancelButtonText: "Cancel",
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        try {
-          const res = await axiosSecure.post("/checkout", {
-            items: cart,
-            subTotal,
-            vat,
-            total,
-          });
-          if (res.data.success) {
-            Swal.fire("Success!", "Checkout completed successfully.", "success");
-            refetch(); // Clear cart after checkout if backend supports
-            onClose();
-          } else {
-            Swal.fire("Error", "Checkout failed. Try again.", "error");
-          }
-        } catch (error) {
-          Swal.fire("Error", "Something went wrong during checkout.", "error");
-        }
-      }
-    });
+    // Swal.fire({
+    //   title: "Proceed to Checkout?",
+    //   text: `Your total is $${total.toFixed(2)}`,
+    //   icon: "question",
+    //   showCancelButton: true,
+    //   confirmButtonText: "Yes, Checkout",
+    //   cancelButtonText: "Cancel",
+    // }).then(async (result) => {
+    //   if (result.isConfirmed) {
+    //     try {
+    //       const res = await axiosSecure.post("/checkout", {
+    //         items: cart,
+    //         subTotal,
+    //         vat,
+    //         total,
+    //       });
+    //       if (res.data.success) {
+    //         Swal.fire("Success!", "Checkout completed successfully.", "success");
+    //         refetch(); // Clear cart after checkout if backend supports
+    //         onClose();
+    //       } else {
+    //         Swal.fire("Error", "Checkout failed. Try again.", "error");
+    //       }
+    //     } catch (error) {
+    //       Swal.fire("Error", "Something went wrong during checkout.", "error");
+    //     }
+    //   }
+    // });
+    onClose();
+    navigate("/checkout");
   };
 
   return (
@@ -89,9 +96,8 @@ const CartDrawer = ({ isOpen, onClose }) => {
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 w-full sm:w-[420px] h-full bg-white shadow-2xl z-50 transform transition-transform duration-300 flex flex-col ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed top-0 right-0 w-full sm:w-[420px] h-full bg-white shadow-2xl z-50 transform transition-transform duration-300 flex flex-col ${isOpen ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         {/* Header */}
         <div className="flex items-center justify-between p-5 border-b border-gray-200">

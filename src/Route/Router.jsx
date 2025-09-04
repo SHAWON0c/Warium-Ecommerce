@@ -12,7 +12,7 @@ import ProfileLayout from "../Layouts/ProfileLayout";
 import History from "../Pages/User/History";
 import Invoice from "../Pages/User/Invoice";
 import Wishlist from "../Pages/User/Wishlist";
-import Cart from "../Pages/User/CartCheckout";
+import Cart from "../Pages/User/CarDrawer";
 import PrivateRoute from "./PrivateRoute";
 import Secrate from "../Shared/Secrate";
 import Redirect from "./Redirect";
@@ -30,10 +30,12 @@ import VendorProducts from "../DashBoard/VendorDashboard/Vendor_Products";
 import VendorTrackShipping from "../DashBoard/VendorDashboard/VendorTrackShipping";
 import VendorSetting from "../DashBoard/VendorDashboard/VendorSetting";
 import PublicProfileSection from "../DashBoard/VendorDashboard/PublicProfileSection";
-import CartCheckout from "../Pages/User/CartCheckout";
+import CartCheckout from "../Pages/User/CarDrawer";
 import TshirtCustomizer from "../AIfeatures/pages/TshirtCustomizer";
 import Coupon from "../DashBoard/ModeratorDashboard/Coupon";
 import CouponApprovals from "../DashBoard/AdminDashboard/CouponAprovals";
+import CheckoutPage from "../Pages/CheckOut/CheckoutPage";
+import NotFound from "../Pages/NotFound/NotFound";
 
 export const router = createBrowserRouter([
   {
@@ -73,6 +75,10 @@ export const router = createBrowserRouter([
           element: <PrivateRoute><Secrate></Secrate></PrivateRoute>
         },
         {
+          path:"checkout",
+          element:<CheckoutPage></CheckoutPage>
+        },
+        {
           path:'products',
           element: <ProductDetailslayout></ProductDetailslayout>,
           children: [
@@ -93,6 +99,11 @@ export const router = createBrowserRouter([
     element: <PrivateRoute><DashBoard></DashBoard></PrivateRoute>,
     children:
       [
+        {
+          index:true,
+          element: <UserProfile></UserProfile>
+
+        },
         {
           path: 'admin',
           element: <AdminDashboard></AdminDashboard>
@@ -166,9 +177,15 @@ export const router = createBrowserRouter([
         {
           path:'approve-coupon',
           element:<CouponApprovals></CouponApprovals>
-        }
+        },
+        
       
 
       ]
+  },
+
+  {
+    path:"*",
+    element:<NotFound></NotFound>
   }
 ]);

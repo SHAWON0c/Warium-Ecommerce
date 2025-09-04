@@ -16,14 +16,18 @@ import {
   BarChart3,
   AlertTriangle,
 } from "lucide-react";
+import profile  from "../assets/images/profile/profile.jpg"
 
 import useAxiosSecure from "../hooks/UseAxiosSecure";
 import UseAuth from "../hooks/UseAuth";
+import useDbUser from "../hooks/useDbUser";
 
 const DashBoard = () => {
   const { user } = UseAuth();
   const axiosSecure = useAxiosSecure();
   const location = useLocation();
+
+  const {dbUser}=useDbUser();
 
   // Fetch user info
   const { data: userInfo, isLoading: userLoading } = useQuery({
@@ -93,16 +97,16 @@ const DashBoard = () => {
       </header>
 
       {/* Layout */}
-      <div className="flex max-w-[80%] mx-auto mt-6 gap-6 px-4">
+      <div className="w-full flex lg:max-w-[80%] lg:mx-auto lg:mt-6 lg:gap-6 lg:px-4">
         {/* Sidebar */}
         <aside className="hidden md:block w-64 bg-white border rounded-xl shadow-sm sticky top-[80px] h-fit">
           <div className="text-center py-6 border-b">
             <img
-              src={user?.photoURL || "/default-avatar.png"}
+              src={user?.photoURL || profile}
               alt="User Avatar"
               className="w-20 h-20 rounded-full mx-auto mb-3 border shadow-sm"
             />
-            <h2 className="font-semibold text-gray-800">{user?.displayName || role.toUpperCase()}</h2>
+            <h2 className="font-semibold text-gray-800">{user?.displayName || dbUser?.name ||role.toUpperCase()}</h2>
             <p className="text-gray-500 text-sm">{user?.email}</p>
           </div>
           <ul className="p-4 space-y-2">

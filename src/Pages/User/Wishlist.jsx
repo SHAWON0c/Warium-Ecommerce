@@ -4,7 +4,6 @@ import { faEye, faRefresh, faShoppingCart } from "@fortawesome/free-solid-svg-ic
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FooterWhite from "../../Shared/FooterWhite";
 
-
 const colorMap = {
   Red: "#f87171",
   Green: "#34d399",
@@ -17,18 +16,16 @@ const colorMap = {
 };
 
 const Wishlist = () => {
-
-
   const [products, setProducts] = useState([]);
   const [selectedColors, setSelectedColors] = useState({});
 
   useEffect(() => {
     fetch("/Wishlist.json")
-      .then(res => res.json())
+      .then((res) => res.json())
       .then((data) => {
         setProducts(data);
         const initialColors = {};
-        data.forEach(p => {
+        data.forEach((p) => {
           if (p.colors?.length > 0) {
             initialColors[p.id] = p.colors[0];
           }
@@ -37,39 +34,37 @@ const Wishlist = () => {
       });
   }, []);
 
-
-
   const handleColorSelect = (productId, color) => {
-    setSelectedColors(prev => ({
+    setSelectedColors((prev) => ({
       ...prev,
       [productId]: color,
     }));
   };
 
   return (
-
-
     <div>
+      {/* Breadcrumb */}
       <div className="w-full bg-gray-100 border">
         <div className="h-[55px] max-w-[1320px] mx-auto flex justify-between items-center px-4">
           <h1 className="text-lg font-semibold">Login</h1>
-          <nav className="flex items-center text-md text-gray-600 space-x-1 gap-2">
+          <nav className="flex items-center text-sm sm:text-md text-gray-600 gap-1 sm:gap-2">
             <span>Home</span>
             <span className="mx-1 text-lg text-red-400">››</span>
-            <span className='text-red-400'>Login</span>
+            <span className="text-red-400">Login</span>
           </nav>
         </div>
       </div>
-      <div className="flex justify-center py-20">
-        <div className="max-w-[1320px] w-full justify-center flex">
-          <div className="flex flex-row gap-6 flex-wrap">
-            {products.map(product => {
-              const selectedColor = selectedColors[product.id];
 
+      {/* Wishlist Grid */}
+      <div className="flex justify-center py-10 sm:py-20 px-2 sm:px-4">
+        <div className="max-w-[1320px] w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {products.map((product) => {
+              const selectedColor = selectedColors[product.id];
               return (
                 <div
                   key={product.id}
-                  className="border rounded-xl p-4 relative hover:shadow-lg transition bg-white overflow-hidden group w-72"
+                  className="border rounded-xl p-4 relative hover:shadow-lg transition bg-white overflow-hidden group w-full sm:w-72 mx-auto"
                 >
                   {/* Label */}
                   {product.label && product.label.toLowerCase() === "sale" ? (
@@ -137,21 +132,22 @@ const Wishlist = () => {
                   </div>
 
                   {/* Color Options */}
-                  {/* Color Options */}
                   {Array.isArray(product.colors) && (
                     <div className="flex gap-2 mt-2">
                       {product.colors.map((color, idx) => (
                         <button
                           key={idx}
                           onClick={() => handleColorSelect(product.id, color)}
-                          className={`w-5 h-5 rounded-full border-2 transition ${selectedColors[product.id] === color ? "border-gray-800 scale-110" : "border-gray-300"
-                            }`}
+                          className={`w-5 h-5 rounded-full border-2 transition ${
+                            selectedColors[product.id] === color
+                              ? "border-gray-800 scale-110"
+                              : "border-gray-300"
+                          }`}
                           style={{ backgroundColor: colorMap[color] || "#ccc" }}
                         ></button>
                       ))}
                     </div>
                   )}
-                  9
                 </div>
               );
             })}
@@ -159,7 +155,7 @@ const Wishlist = () => {
         </div>
       </div>
 
-
+      <FooterWhite />
     </div>
   );
 };

@@ -4,7 +4,7 @@ import '../App.css';
 import '../index.css';
 import TestimonialServices from './TestimonialServices';
 import BlogSection from './BlogSection';
-import CartDrawer from './User/CartCheckout';
+import CartDrawer from './User/CarDrawer';
 import EcommerceLayout from '../Layouts/EcommerceLayout';
 import TshirtHome from '../AIfeatures/pages/TshirtHome';
 import TshirtCustomizer from '../AIfeatures/pages/TshirtCustomizer';
@@ -19,7 +19,7 @@ const Home = () => {
             </div>
 
             {/* Main Content Centered */}
-            <div className='max-w-[80%] mx-auto flex flex-col gap-12'>
+            <div className='max-w-[70%] mx-auto flex flex-col gap-12'>
                 <Categories />
                 <EcommerceLayout />
 
